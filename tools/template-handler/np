@@ -1,0 +1,38 @@
+#!/usr/bin/zsh
+lang=$1
+arg=$2
+input=$3
+if [[ $# -eq 3 ]]; then
+	if [[ "$lang" = "cpp" ]]; then
+		if [[ "$arg" = "cpp" ]]; then
+			mkdir -p $input
+			mkdir -p $input/source
+			cp .template/makefiles/Makefile-cpp $input/Makefile
+			cp -r .template/source/main-cpp.cpp $input/source/main.cpp
+			echo "IRASSHAIMASE"
+		elif [[ "$arg" = "ray" ]]; then
+			mkdir -p $input
+			mkdir -p $input/source
+			cp .template/makefiles/Makefile-raylib $input/Makefile
+			cp -r .template/source/main-raylib.cpp $input/source/main.cpp
+			echo "IRASSHAIMASE"
+		elif [[ "$arg" = "opengl" ]]; then
+			mkdir -p $input
+			mkdir -p $input/source
+			cp .template/makefiles/Makefile-opengl $input/Makefile
+			cp -r .template/source/main-cpp.cpp $input/source/main.cpp
+			echo "IRASSHAIMASE"
+		else
+			echo "KIOTSKETE"
+			exit 1
+		fi
+	elif [[ "$lang" = "c" ]]; then
+		echo "work in progress"
+	else
+		echo "KIOTSKETE"
+		exit 1
+	fi
+else
+	echo "KIOTSKETE"
+	exit 1
+fi

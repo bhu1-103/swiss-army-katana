@@ -29,3 +29,7 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [ ] ~~Improve update frequency to make it smoother~~
 - [ ] Decrease update frequency and make it more efficient
 - [ ] **Implement smooth dimming**
+
+## [auto-rotate in laptop](https://github.com/bhu1-103/swiss-army-katana/tools/auto-rotate)
+- Pretty good except for the infinite for loop 🤢
+- usage -> run `./autorotate.sh` and keep the other files, [this](), [this](), [and this]() and also [this]()

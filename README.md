@@ -13,6 +13,15 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [ ] Map maker.
 - [ ] Add enemies.
 
+## [graph plotter](https://github.com/bhu1-103/swiss-army-katana/blob/main/opengl/lattice-gradient/lattice_opengl.cpp)
+- One of my first opengl projects.
+- Gradient made using for loop. Just increment R,G,B values. Cycle the values between 0 to 255 for better effect.
+- [x] Plot points and lines.
+- [x] Plot custom functions (curves).
+- [ ] Scroll across the map and zoom functionality.
+- [ ] Add a post compilation method in editor similar to desmos.
+
+
 ## [np (new-project)](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler) 
 - Productivity max. Copy-pastes templates and makefiles from a local hidden folder. Currently works for c++.
 - usage -> ` np [programming-language] [library] [file_name] `.

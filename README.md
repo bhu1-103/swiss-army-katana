@@ -3,6 +3,15 @@ Explore a curated set of versatile tools designed to enhance everyday tasks. Eac
 
 Like forging your own katana, each tool here sharpens your coding skills with precision.
 
+## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)
+- Thanks to [ray casting](https://en.wikipedia.org/wiki/Ray_casting), we can make a semi-3d world by just using a 2d graphics.
+- First we make a top down world (as in pokemon games prior gen 6) and then we use some math to convert it into 3d.
+- [Fish eye effect](https://en.wikipedia.org/wiki/Fisheye_lens) can be fixed.
+- [x] 3d world.
+- [x] Roam around in the map freely.
+- [ ] Add collisions.
+- [ ] make map maker.
+
 ## [np (new-project)](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler) 
 - Productivity max. Copy-pastes templates and makefiles from a local hidden folder. Currently works for c++.
 - usage -> ` np [programming-language] [library] [file_name] `.

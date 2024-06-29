@@ -3,7 +3,7 @@ Explore a curated set of versatile tools designed to enhance everyday tasks. Eac
 
 Like forging your own katana, each tool here sharpens your coding skills with precision.
 
-![setup.png](/.images/setup.png)
+![setup.png](/.images/rice.png)
 
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)

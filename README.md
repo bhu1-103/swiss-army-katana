@@ -18,3 +18,14 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [x] Constant annoying notifications
 - [ ] Integrate with [polybar](https://github.com/polybar/polybar) or [rofi](https://github.com/davatorium/rofi) for non console access
 - [ ] Replace with a better algorithm and remove sleep
+
+## [automatic brightness](https://github.com/bhu1-103/swiss-army-katana/tools/auto-brightness)
+- Want to get automatic screen brightness on your laptop? 
+- Check if you have [iio-sensors-proxy](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/) installed. If not, download it from your distro provider or from [here](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/)
+- usage -> run `monitor-sensor > light_values.txt` and `./apply-light.sh`
+- [x] Auto brightness
+- [-] Logarithmic brightness adjustment. Might not work as good in all systems due to change in hardware.
+- [ ] Make it run in all systems by retrieving system information
+- [ ] ~~Improve update frequency to make it smoother ~~
+- [ ] Decrease update frequency and make it more efficient
+- [ ] **Implement smooth dimming**

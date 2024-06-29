@@ -5,7 +5,7 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 
 ## [np (new-project)](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler) 
 - Productivity max. Copy-pastes templates and makefiles from a local hidden folder. Currently works for c++.
--- [x] C++ raylib
+- - [x] C++ raylib
 - [x] C++ opengl
 - [ ] More customization
 - [ ] More programming languages

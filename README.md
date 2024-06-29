@@ -27,9 +27,13 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [x] Logarithmic brightness adjustment. Might not work good everywhere due to differences in hardware.
 - [ ] Make it run in all systems by retrieving system information
 - [ ] ~~Improve update frequency to make it smoother~~
-- [ ] Decrease update frequency and make it more efficient
+- [ ] Decrease update frequency and make it more efficient. Fix extensive resource usage
 - [ ] **Implement smooth dimming**
 
 ## [auto-rotate in laptop](https://github.com/bhu1-103/swiss-army-katana/tools/auto-rotate)
-- Pretty good except for the infinite for loop 🤢
+- Pretty good except for the infinite `for` loop 🤢
 - usage -> run `./autorotate.sh` and keep the other files, [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen-v.sh) and also [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen-v.sh)
+- [x] Functional and reliable auto-rotate
+- [ ] Fix extensive resource usage
+- [ ] Get rid of the stupid loop and try making it a cronjob
+- [ ] **Make an accelerometer and gyroscope visualiser**

@@ -1,0 +1,7 @@
+
+bindsym $mod+l exec ~/.config/i3/blur-lock
+bindsym $mod+Shift+e exec ~/.config/i3/powermenu
+bindsym $mod+p exec /usr/local/bin/switch-audio-port
+assign [class="steam"] $ws3
+
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf

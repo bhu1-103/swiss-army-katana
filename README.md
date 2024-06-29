@@ -24,7 +24,7 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - Check if you have [iio-sensors-proxy](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/) installed. If not, download it from your distro provider or from [here](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/)
 - usage -> run `monitor-sensor > light_values.txt` and `./apply-light.sh`
 - [x] Auto brightness
-- [ ] Logarithmic brightness adjustment. Might not work as good in all systems due to change in hardware.
+- [x] Logarithmic brightness adjustment. Might not work good everywhere due to differences in hardware.
 - [ ] Make it run in all systems by retrieving system information
 - [ ] ~~Improve update frequency to make it smoother ~~
 - [ ] Decrease update frequency and make it more efficient

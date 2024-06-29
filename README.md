@@ -16,5 +16,5 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - usage -> ` timer [number of seconds] [interval] [workspace to switch to] `
 - [x] Workspace switch after time
 - [x] Constant annoying notifications
-- [ ] Integrate with [polybar] (https://github.com/polybar/polybar) or [rofi] (https://github.com/davatorium/rofi) for non console access
+- [ ] Integrate with [polybar](https://github.com/polybar/polybar) or [rofi](https://github.com/davatorium/rofi) for non console access
 - [ ] Replace with a better algorithm and remove sleep

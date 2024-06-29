@@ -11,7 +11,7 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [ ] More customization options
 - [ ] More programming languages
 
-> [timer.sh](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/timer.sh) 
+## [timer.sh](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/timer.sh) 
 - A simple timer program that automatically switches to the desired workspace and constantly notifies. Good for people who get lost in thought.
 - usage -> ` timer [number of seconds] [interval] [workspace to switch to] `
 - [x] Workspace switch after time

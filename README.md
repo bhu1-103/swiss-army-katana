@@ -26,6 +26,6 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [x] Auto brightness
 - [x] Logarithmic brightness adjustment. Might not work good everywhere due to differences in hardware.
 - [ ] Make it run in all systems by retrieving system information
-- [ ] ~~Improve update frequency to make it smoother ~~
+- [ ] ~~Improve update frequency to make it smoother~~
 - [ ] Decrease update frequency and make it more efficient
 - [ ] **Implement smooth dimming**

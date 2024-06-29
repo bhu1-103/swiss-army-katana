@@ -10,7 +10,8 @@ Like forging your own katana, each tool here sharpens your coding skills with pr
 - [x] 3d world.
 - [x] Roam around in the map freely.
 - [ ] Add collisions.
-- [ ] make map maker.
+- [ ] Map maker.
+- [ ] Add enemies.
 
 ## [np (new-project)](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler) 
 - Productivity max. Copy-pastes templates and makefiles from a local hidden folder. Currently works for c++.

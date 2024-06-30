@@ -4,7 +4,7 @@ Explore a curated set of versatile tools designed to enhance everyday tasks. Eac
 Like forging your own katana, some are sharp but fragile, that's me.
 
 My setup :D
-![setup.png](/.images/rice.png)
+![setup.png](/resources/rice.png)
 
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)

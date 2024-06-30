@@ -4,7 +4,7 @@ Explore a curated set of versatile tools designed to enhance everyday tasks. Eac
 Like forging your own katana, some are sharp but fragile, that's me.
 
 My setup :D
-![setup.png](/resources/rice.png)
+![setup.png](/assets/rice.png)
 
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)
@@ -28,11 +28,11 @@ My setup :D
 
 ## [np (new-project)](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler) 
 - Productivity max. Copy-pastes templates and makefiles from a local hidden folder. Currently works for c++.
-- usage -> ` np [programming-language] [library] [file_name] `.
+- usage -> ` np [language] [library] [file_name] `.
 - [x] C++ raylib.
 - [x] C++ opengl.
 - [ ] More customization options.
-- [ ] More programming languages.
+- [ ] More languages.
 
 ## [timer.sh](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/timer.sh) 
 - A simple timer program that automatically switches to the desired workspace and constantly notifies. Good for people who get lost in thought.
@@ -54,7 +54,7 @@ My setup :D
 - [ ] **Implement smooth dimming**.
 
 ## [auto-rotate in laptop](https://github.com/bhu1-103/swiss-army-katana/tools/auto-rotate)
-- Pretty good except for the infinite `for` loop 🤢.
+- Pretty good except for the infinite `for` loop...
 - usage -> run `./autorotate.sh` and keep the other files, [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen-v.sh) and also [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen-v.sh) in the same directory.
 - [x] Functional and reliable auto-rotate.
 - [ ] Fix extensive resource usage.

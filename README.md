@@ -62,3 +62,13 @@ My setup :D
 - [ ] Fix extensive resource usage.
 - [ ] Get rid of the stupid loop and try making it a cronjob.
 - [ ] **Make an accelerometer and gyroscope visualiser**.
+
+## automation scripts
+### auto chatgpt upload
+-- Uploads files in order and stores the output inside text files.
+-- Works like a [macro](https://en.wikipedia.org/wiki/Macro_(computer_science))
+-- usage -> run `./optimus-prime.sh`
+-- [x] Can automatically do tasks, but is limited for now.
+-- [ ] GUI app to set macros and run at any time.
+-- [ ] Make it sensitive to changes on the screen and act quicker instead of relying on hardcoded sleep timers.
+

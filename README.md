@@ -3,6 +3,8 @@ Explore a curated set of versatile tools designed to enhance everyday tasks. Eac
 
 Like forging your own katana, some are sharp but fragile, that's me.
 
+Do check out my itch.io page at https://bhu1.itch.io/
+
 My setup :D
 ![setup.png](/assets/rice.png)
 

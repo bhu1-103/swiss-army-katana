@@ -63,8 +63,8 @@ My setup :D
 - [ ] Get rid of the stupid loop and try making it a cronjob.
 - [ ] **Make an accelerometer and gyroscope visualiser**.
 
-## automation scripts
-### auto chatgpt upload
+## [automation scripts](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/automation)
+### [auto chatgpt upload](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/automation/auto-chatgpt-upload/optimus-prime.sh)
 -- Uploads files in order and stores the output inside text files.
 -- Works like a [macro](https://en.wikipedia.org/wiki/Macro_(computer_science))
 -- usage -> run `./optimus-prime.sh`

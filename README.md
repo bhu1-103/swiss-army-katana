@@ -64,3 +64,5 @@ My setup :D
 - [ ] **Make an accelerometer and gyroscope visualiser**.
 
 ## [automation scripts](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/automation)
+### [auto-mousemove](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/automation)
+- Remind me in 1 day.

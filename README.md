@@ -11,13 +11,17 @@ My setup :D
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)
 - Thanks to [ray casting](https://en.wikipedia.org/wiki/Ray_casting), we can make a semi-3d world by just using a 2d graphics.
-- First we make a top down world as in older rpgs and then we use some math to convert it into 3d.
+- First we make a top down world as in older rpgs and dungeon crawlers and then we use some math to convert it into 3d.
 - [Fish eye effect](https://en.wikipedia.org/wiki/Fisheye_lens) can be fixed.
 - [x] 3d world.
 - [x] Roam around in the map freely.
 - [ ] Add collisions.
 - [ ] Map maker.
 - [ ] Add enemies.
+
+## [TIC-80](https://github.com/bhu1-103/swiss-army-katana/tree/main/tic-80)
+### [Movement and sprite wrapping](https://github.com/bhu1-103/swiss-army-katana/blob/main/tic-80/sprite-wrap.tic)
+- Basic program to move meatboy around and implementing sprite wrapping.
 
 ## [graph plotter](https://github.com/bhu1-103/swiss-army-katana/blob/main/opengl/lattice-gradient/lattice_opengl.cpp)
 - One of my first opengl projects.

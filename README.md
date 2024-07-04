@@ -3,10 +3,11 @@ Explore a curated set of versatile tools designed to enhance everyday tasks. Eac
 
 Like forging your own katana, some are sharp but fragile, that's me.
 
-Do check out my **itch.io** page at https://bhu1.itch.io/ (even though its empty)
+Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty)
 
 My setup :D
 ![setup.png](/assets/rice.png)
+- Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)

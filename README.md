@@ -4,11 +4,13 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 
 Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (for now)
 
-My setup :D
+# My setup :D
 
-# bspwm
-![setup.png](/assets/rice.png)
+- bspwm
+![setup-bspwm.png](/assets/bspwm-rice.png)
 
+- hyprland
+![setup-hyprland.png](/assets/hyprland-rice.jpeg)
 - Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 
 

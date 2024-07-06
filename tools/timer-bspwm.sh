@@ -1,9 +1,9 @@
 #!/usr/bin/zsh
 
 time=$1
-minute=60 #seconds
-minute=$2
-workspace=$3
+workspace=$2
+minute=60 #if no 3rd input parameter is passed, it automatically sets it to 60
+minute=$3
 
 for (( x=$time;x>0;x-- )); do
 	sleep 1

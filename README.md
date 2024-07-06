@@ -41,7 +41,7 @@ My setup :D
 
 ## [timer.sh](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/timer.sh) 
 - A simple timer program that automatically switches to the desired workspace and constantly notifies. Good for people who get lost in thought.
-- usage -> ` timer [number of seconds] [interval] [workspace to switch to] `.
+- usage -> ` timer [number of seconds] [workspace to switch to] [interval] `.
 - [x] Workspace switch after time.
 - [x] Constant annoying notifications.
 - [ ] Integrate with [polybar](https://github.com/polybar/polybar) or [rofi](https://github.com/davatorium/rofi) for non console access.

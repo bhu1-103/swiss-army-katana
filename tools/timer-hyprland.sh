@@ -15,4 +15,4 @@ for (( x=$time;x>0;x-- )); do
 	fi
 done
 
-bspc desktop -f $workspace
+hyprctl dispatch workspace $workspace

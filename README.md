@@ -13,7 +13,7 @@ Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (fo
 ![setup-hyprland.png](/assets/hyprland-rice.jpeg)
 
 - firefox
-![setup-firefox.png](/frontend/firefox/css.png)
+![setup-firefox.png](/frontend/firefox/homepage.png)
 
 - Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 

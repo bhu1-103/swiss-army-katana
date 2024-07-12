@@ -11,6 +11,10 @@ Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (fo
 
 - hyprland
 ![setup-hyprland.png](/assets/hyprland-rice.jpeg)
+
+- firefox
+![setup-firefox.png](/frontend/firefox/css.png)
+
 - Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 
 

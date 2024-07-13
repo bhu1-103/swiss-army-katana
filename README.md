@@ -7,6 +7,9 @@ Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (fo
 - legacy opengl 3d cube
 ![3d cube](/assets/3d-cube.gif)
 
+- how computers make circles
+![circle](/assets/circle.gif)
+
 - customized firefox
 ![setup-firefox.png](/assets/firefox-homepage.png)
 

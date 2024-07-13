@@ -7,8 +7,8 @@ Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (fo
 - legacy opengl 3d cube (journey)
 ![3d cube](/assets/3d-cube.gif)
 
-- how computers make circles (click [here](/tools/automation/circle.sh) if you want to see how I made this gif)
-![circle](/assets/circle.gif)
+- how computers make circles (click [here](/tools/automation/circle.sh) if you want to see how I made this gif) ([old version](/assets/circle.gif))
+![circle](/assets/circle-updated.gif)
 
 - customized firefox
 ![setup-firefox.png](/assets/firefox-homepage.png)

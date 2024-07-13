@@ -20,7 +20,7 @@ if [[ $# -eq 3 ]]; then
 			mkdir -p $input
 			mkdir -p $input/source
 			cp .template/makefiles/Makefile-opengl $input/Makefile
-			cp -r .template/source/main-cpp.cpp $input/source/main.cpp
+			cp -r .template/source/main-opengl.cpp $input/source/main.cpp
 			echo "IRASSHAIMASE"
 		else
 			echo "KIOTSKETE"

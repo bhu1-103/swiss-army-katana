@@ -5,10 +5,13 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (for now)
 
 - legacy opengl 3d cube
-![uh](/assets/3d-cube.gif)
+![3d cube](/assets/3d-cube.gif)
 
 - customized firefox
 ![setup-firefox.png](/assets/firefox-homepage.png)
+
+- doom remake (gave up, excuse the low resolution, still a beginner using ffmpeg)
+![doom remake](/assets/doom_demo.gif)
 
 - Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 

@@ -4,16 +4,11 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 
 Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (for now)
 
-# My setup :D
+- legacy opengl 3d cube
+![uh](/assets/3d-cube.gif)
 
-- bspwm
-![setup-bspwm.png](/assets/bspwm-rice.png)
-
-- hyprland
-![setup-hyprland.png](/assets/hyprland-rice.jpeg)
-
-- firefox
-![setup-firefox.png](/frontend/firefox/homepage.png)
+- customized firefox
+![setup-firefox.png](/assets/firefox-homepage.png)
 
 - Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 

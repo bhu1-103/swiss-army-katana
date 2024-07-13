@@ -4,7 +4,7 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 
 Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (for now)
 
-- legacy opengl 3d cube
+- legacy opengl 3d cube (journey)
 ![3d cube](/assets/3d-cube.gif)
 
 - how computers make circles (click [here](/tools/automation/circle.sh) if you want to see how I made this gif)

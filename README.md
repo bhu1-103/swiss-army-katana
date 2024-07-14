@@ -23,10 +23,13 @@ Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (fo
 - The shell script uses [vosk transcriber](https://alphacephei.com/vosk/) to convert speech to text.
 - It then parses the first word and depending on the action, performs the action.
 - Integrate with your WM/DE for best performance.
+- [x] Resource efficient. [model used](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip)
 - [x] Open desktop applications like firefox.
 - [x] Work alongside xdotool (keyboard and mouse emulation) and other tools for infinite freedom.
 - [ ] Sudo password stored inside the shell script itself, making it vulnerable to threat actors.
 - [ ] Integrate it into polybar/waybar or make a custom dmenu/rofi menu to call it anytime.
+- [ ] Start converting to text as soon as silence is detected.
+- dependencies: vosk-transcriber (pip install vosk-transcriber), you can replace alacritty, ffmpeg, dunstify, etc tools with any you like.
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)
 - Thanks to [ray casting](https://en.wikipedia.org/wiki/Ray_casting), we can make a semi-3d world by just using a 2d graphics.

@@ -2,8 +2,6 @@
 
 Tools and programs I write at free time that helps me in day to day tasks and increases productivity.
 
-Do check out my **itch.io** page at https://bhu1.itch.io/ (though its empty) (for now)
-
 - legacy opengl 3d cube (journey)
 ![3d cube](/assets/3d-cube.gif)
 

@@ -44,7 +44,9 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 
 ## [TIC-80](https://github.com/bhu1-103/swiss-army-katana/tree/main/tic-80)
 ### [Movement and sprite wrapping](https://github.com/bhu1-103/swiss-army-katana/blob/main/tic-80/sprite-wrap.tic)
-- Basic program to move meatboy around and implementing sprite wrapping.
+- [x] Basic program to move meatboy around and implementing sprite wrapping.
+- [x] Jump physics that actually feel good.
+- [ ] Map implementation
 
 ## [graph plotter](https://github.com/bhu1-103/swiss-army-katana/blob/main/opengl/lattice-gradient/lattice_opengl.cpp)
 - One of my first opengl projects.

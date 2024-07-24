@@ -11,6 +11,9 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 - fps template
 ![3d world](/assets/3d-world.gif)
 
+- synthwave animation v0.2
+![synthwave animation](/assets/synthwave-mountains.gif)
+
 - customized firefox
 ![setup-firefox.png](/assets/firefox-homepage.png)
 

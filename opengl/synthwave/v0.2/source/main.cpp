@@ -8,8 +8,8 @@ float screenWidth = 1280;
 float screenHeight = 720;
 float py_h;
 float py_w;
-float num1 = 10.0f - rand()%20;
-float num2 = 10.0f - rand()%20;
+float num1 = 10.0f - rand()%20; //made global variables because the position also got randomized after every frame...
+float num2 = 10.0f - rand()%20; //will fix this mess soon
 float num3 = 10.0f - rand()%20;
 float num4 = 10.0f - rand()%20;
 float num5 = 10.0f - rand()%20;

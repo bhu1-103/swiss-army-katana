@@ -1,9 +1,9 @@
 CXX = g++
-CXXFLAGS = -Wall -g
+CXXFLAGS = -Wall -g -I$(SRC_DIR)
 SRC_DIR = source
 BUILD_DIR = build
 TARGET = pls-work
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+SRCS = $(wildcard $(SRC_DIR)/*.cpp $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
 LDFLAGS = -lGL -lGLU -lglut -lGLEW -lglfw
 

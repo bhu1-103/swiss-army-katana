@@ -15,7 +15,7 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 ![synthwave animation](/assets/synthwave-mountains.gif)
 
 - synthwave animation v0.3
-![synthwave animation](/assets/synthwave-sun.gif)
+![synthwave animation](/assets/synthwave-sun.mp4)
 
 - customized firefox
 ![setup-firefox.png](/assets/firefox-homepage.png)

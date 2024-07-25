@@ -1,6 +1,10 @@
 # swiss-army-katanaa
 
 Tools and programs I write at free time that helps me in day to day tasks and increases productivity.
+## My libraries ->
+[synthwave.h](lib/synthwave/synthwave.cpp)
+
+## demos
 
 - legacy opengl 3d cube (journey)
 ![3d cube](/assets/3d-cube.gif)

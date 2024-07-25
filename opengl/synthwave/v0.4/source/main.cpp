@@ -7,8 +7,8 @@ float povY = 0.0f;
 float povZ = 0.0f;
 float screenWidth = 1280;
 float screenHeight = 720;
-float py_h;
-float py_w;
+float py_h; //pyramid height
+float py_w; //pyramid width, square base pyramid btw
 float num1 = 20.0f - rand()%40; //made global variables because the position also got randomized after every frame...
 float num2 = 20.0f - rand()%40; //will fix this mess soon
 float num3 = 20.0f - rand()%40;
@@ -26,7 +26,7 @@ float num14 = 20.0f - rand()%40;
 
 
 void initOpenGL() {
-    glClearColor(0.2f, 0.0f, 0.2f, 1.0f);
+    glClearColor(0.2f, 0.0f, 0.2f, 1.0f); //deep dark purple bg
 }
 
 void display() {
@@ -38,17 +38,17 @@ void display() {
     gluPerspective(45.0f,screenWidth/screenHeight,1.0f,50.0f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(povX,povY,3.0f+povZ,
-                   0.0f,0.0f,0.0f,
-                   0.0f,1.0f,0.0f);
+    gluLookAt(povX,povY,3.0f+povZ, //eye position
+                   0.0f,0.0f,0.0f, //center position
+                   0.0f,1.0f,0.0f); //z axis direction
 
     //begin drawing
-	draw_sun();
+	draw_sun(); //direct function call, will add input parameters for flexibility later
 	draw_grid();
 
-	glColor4f(1.0f,0.0f,1.0f,1.0f);
+	//glColor4f(1.0f,0.0f,1.0f,1.0f);
 
-	pyramid(num1, num2, +3.0f,+5.0f);
+	pyramid(num1, num2, +3.0f,+5.0f); //pretend you never saw this...
 	pyramid(num3, num4, +3.0f,+5.0f);
 	pyramid(num5, num6, +3.0f,+5.0f);
 	pyramid(num7, num8, +3.0f,+5.0f);

@@ -73,8 +73,8 @@ void keyboardCallback(unsigned char key, int x, int y)
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(1280, 720);
-    glViewport(0,0,1280,720);
+    glutInitWindowSize(screenWidth, screenHeight);
+    glViewport(0,0,screenWidth,screenHeight);
     glutCreateWindow("idk");
     initOpenGL();
     glutDisplayFunc(display);

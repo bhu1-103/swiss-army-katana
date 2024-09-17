@@ -31,7 +31,7 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 - The shell script uses [vosk transcriber](https://alphacephei.com/vosk/) to convert speech to text.
 - It then parses the first word and depending on the action, performs the action.
 - Integrate with your WM/DE for best performance.
-- [x] Resource efficient. [model used](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip)
+- [x] Resource efficient [model](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip) used
 - [x] Open desktop applications like firefox.
 - [x] Work alongside xdotool (keyboard and mouse emulation) and other tools for infinite freedom.
 - [ ] Sudo password stored inside the shell script itself, making it vulnerable to threat actors.

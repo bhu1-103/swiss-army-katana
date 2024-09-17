@@ -3,6 +3,7 @@
 Tools and programs I write at free time that helps me in day to day tasks and increases productivity.
 ## My libraries ->
 [synthwave.h](lib/synthwave/synthwave.cpp)
+[customized version of synthwave.h for displaying access points and station](https://github.com/bhu1-103/KAPPI/blob/main/step2/v0.4/source/synthwave.cpp)
 
 ## demos
 

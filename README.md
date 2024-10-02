@@ -4,7 +4,9 @@ Tools and programs I write at free time that helps me in day to day tasks and in
 ## My libraries ->
 [synthwave.h](lib/synthwave/synthwave.cpp)
 
-[customized version of synthwave.h for displaying access points and station](https://github.com/bhu1-103/KAPPI/blob/main/step2/v0.4/source/synthwave.cpp)
+[customized version of synthwave.h for displaying access points and stations](https://github.com/bhu1-103/KAPPI/blob/main/step2/v0.4/source/synthwave.cpp).
+
+check out the whole project [here](https://github.com/bhu1-103/KAPPI/tree/main/step2/v0.4)
 
 ## demos
 

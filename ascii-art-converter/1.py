@@ -10,10 +10,10 @@ COLORS = "@%*=-:. "
 
 width, height = grayscaled.size
 aspect_ratio = float(height)/float(width)
-resolution = 1000
+resolution = 50
 new_w = resolution
-#new_h = int(aspect_ratio * resolution * 11/25) #used 11/25 because that's the ratio of height vs width for the font i am using right now, ShureTech Nerd Font
-new_h = int(aspect_ratio * resolution * 0.357)
+new_h = int(aspect_ratio * resolution * 11/25) #used 11/25 because that's the ratio of height vs width for the font i am using right now, ShureTech Nerd Font
+#new_h = int(aspect_ratio * resolution * 0.357)
 resized = grayscaled.resize((new_w,new_h))
 pixels = np.array(resized)
 

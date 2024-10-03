@@ -1,8 +1,8 @@
 ## ASCII Art Converter
 
-## As of now, it supports monochrome only. 
-## Might try colors later on.
-## Enjoy some kirby pixel art till then. :D
+### As of now, it supports monochrome only. 
+### Might try colors later on.
+### Enjoy some kirby acsii pixel art till then. :D
 ..................................................
 ...........:%%%%-.=%%%%%%%%%%-....................
 ........::%%=-==*%*----------*%%%*:...............
@@ -20,3 +20,7 @@
 .......:%%**====****%@@%%%%@@@@%===*@%::..........
 ........::%%%%%%%%%%@@%::::..*@@%%%*..............
 ..................................................
+
+## ASCII Art COnverter mk 2
+
+### now with color using ansi escape codes to print color

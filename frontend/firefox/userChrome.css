@@ -16,8 +16,8 @@
 #nav-bar {
 	position: fixed !important;
 	top: 0;
-	left: 25%;
-	right: 25%;
+	left: 20%;
+	right: 20%;
   z-index: 1;
 	transition: top 0.3s cubic-bezier(0.270, 0.910, 0.435, 1.280), opacity 0.1s ease !important;
 	border-top: none !important;

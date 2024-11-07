@@ -19,6 +19,7 @@ while true; do
     elif [ "$Y" -gt "$Y2" ]; then
         xdotool mousemove $X $Y2
     fi
+	xdotool mousedown 2
 
     sleep 0.01
 done

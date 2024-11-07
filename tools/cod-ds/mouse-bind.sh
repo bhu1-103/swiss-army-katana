@@ -1,9 +1,9 @@
 #!/bin/bash
 
-X1=500
-Y1=500
-X2=1000
-Y2=800
+X1=1285
+Y1=68
+X2=2548
+Y2=1419
 
 while true; do
     eval $(xdotool getmouselocation --shell)

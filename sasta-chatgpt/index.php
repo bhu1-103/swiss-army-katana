@@ -24,7 +24,7 @@
         exec($command, $output, $status);
 
         if ($status === 0) {
-            echo "<h2>Shell Script Output:</h2>";
+            echo "<h2>Answer...</h2>";
 
             $response = implode("\n", $output);
             if (preg_match('/"response":\s*"([^"]*)"/', $response, $matches)) {

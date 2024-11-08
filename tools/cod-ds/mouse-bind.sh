@@ -5,8 +5,14 @@ Y1=200
 X2=2400
 Y2=1200
 
+xdotool mousedown 1
 while true; do
+
     eval $(xdotool getmouselocation --shell)
+	BUTTON_STATE=$(xdotool getmouselocation --shell | grep BUTTONS | cut -d= -f2)
+	if [[ $BUTTON_STATE == *"1"* ]]; then
+		xdotool key q
+    fi
 
     if [ "$X" -lt "$X1" ]; then
         xdotool mousemove $X1 $Y
@@ -19,7 +25,6 @@ while true; do
     elif [ "$Y" -gt "$Y2" ]; then
         xdotool mousemove $X $Y2
     fi
-	xdotool mousedown 2
 
     sleep 0.01
 done

@@ -72,5 +72,5 @@ def generate_and_save_mazes(size, max_iterations=100):
 
 if __name__ == "__main__":
     maze_size = 16
-    max_iterations = 10000
+    max_iterations = 1000
     generate_and_save_mazes(maze_size, max_iterations)

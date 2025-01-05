@@ -1,3 +1,6 @@
 /maze/solvable
 /maze/not-solvable
-
+/ascii-art-converter/ml/X.npy
+/ascii-art-converter/ml/y.npy
+/ascii-art-converter/ml/ascii-art
+/ascii-art-converter/ml/mnist-images

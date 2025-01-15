@@ -1,0 +1,73 @@
+import requests
+
+def get_wikipedia_page(title):
+    url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data.get("extract", "")
+    else:
+        return "Page not found or an error occurred."
+
+wiki_content = get_wikipedia_page("Artificial intelligence")
+print(wiki_content)
+
+def chunk_text(text, max_tokens=512):
+    words = text.split()
+    chunks = []
+    current_chunk = []
+
+    for word in words:
+        current_chunk.append(word)
+        if len(current_chunk) >= max_tokens:
+            chunks.append(" ".join(current_chunk))
+            current_chunk = []
+
+    if current_chunk:
+        chunks.append(" ".join(current_chunk))
+
+    return chunks
+
+chunks = chunk_text(wiki_content, max_tokens=512)
+print(chunks)
+
+from sentence_transformers import SentenceTransformer, util
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+chunk_embeddings = model.encode(chunks, convert_to_tensor=True)
+question = "What is artificial intelligence?"
+question_embedding = model.encode(question, convert_to_tensor=True)
+
+scores = util.cos_sim(question_embedding, chunk_embeddings)[0]
+top_k = min(3, len(scores))  # Use the smaller of 3 or the number of scores
+top_chunks = [chunks[i] for i in scores.topk(top_k).indices]  # Retrieve only available chunks
+#top_chunks = [chunks[i] for i in scores.topk(3).indices]  # Top 3 chunks
+
+print(top_chunks)
+def construct_prompt(chunks, question):
+    context = "\n\n".join(chunks)
+    return f"Context:\n{context}\n\nQuestion: {question}\nAnswer:"
+
+prompt = construct_prompt(top_chunks, question)
+print(prompt)
+
+import requests
+import json
+
+def query_mistral(prompt):
+    url = "http://localhost:11434/api/generate"
+    payload = {
+        "model": "mistral",
+        "prompt": prompt,
+        "stream": False
+    }
+    headers = {"Content-Type": "application/json"}
+    
+    response = requests.post(url, data=json.dumps(payload), headers=headers)
+    return response.json().get("response", "No response")
+
+response = query_mistral(prompt)
+print(response)
+
+

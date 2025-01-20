@@ -1,6 +1,9 @@
 # swiss-army-katanaa
 
 Tools and programs I write at free time that helps me in day to day tasks and increases productivity.
+
+Also check out some of my automation tools here.
+
 ## My libraries ->
 [synthwave.h](lib/synthwave/synthwave.cpp)
 

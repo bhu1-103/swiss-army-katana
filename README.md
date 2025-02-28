@@ -44,6 +44,7 @@ check out the whole project [here](https://github.com/bhu1-103/KAPPI/tree/main/s
 - [ ] Sudo password stored inside the shell script itself, making it vulnerable to threat actors.
 - [ ] Integrate it into polybar/waybar or make a custom dmenu/rofi menu to call it anytime.
 - [ ] Start converting to text as soon as silence is detected.
+- [ ] talkback using kokoro tts.
 - dependencies: vosk-transcriber (pip install vosk-transcriber), you can replace alacritty, ffmpeg, dunstify, etc tools with any you like.
 
 ## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)

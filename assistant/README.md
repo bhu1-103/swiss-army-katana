@@ -6,5 +6,5 @@ no mic to use vosk
 
 to do list
 
--[x] 8 gb ram stick
+- [x] 8 gb ram stick
 

@@ -1,1 +1,2 @@
-ANSI escape codes used for displaying true colors
+- [x] ANSI escape codes used for displaying true colors
+- [ ] use laptop stylus and touch screen as input for pc

@@ -15,4 +15,9 @@ for (( x=$time;x>0;x-- )); do
 	fi
 done
 
+for (( x=0;x<5;x++ ));do
+    razer-cli -b 5
+    sleep 1
+    razer-cli -b 100
+done
 hyprctl dispatch workspace $workspace

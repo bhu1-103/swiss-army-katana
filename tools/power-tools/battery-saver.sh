@@ -2,5 +2,6 @@
 
 pacman -S cpupower tlp
 cpupower frequency-set -d 400MHz -u 1.0GHz
+sudo iw dev wlp2s0 set power_save on
 systemctl enable tlp
 system disable bluetooth

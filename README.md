@@ -104,7 +104,8 @@ check out the whole project [here](https://github.com/bhu1-103/KAPPI/tree/main/s
 - usage -> run `./autorotate.sh` and keep the other files, [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen-v.sh) and also [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen-v.sh) in the same directory.
 - [x] Functional and reliable auto-rotate.
 - [ ] Fix extensive resource usage.
-- [ ] Get rid of the stupid loop and try making it a cronjob.
+- [ ] ~Get rid of the stupid loop and try making it a cronjob.~
+- [ ] only consider delta changes.
 - [ ] **Make an accelerometer and gyroscope visualiser**.
 
 ## [automation scripts](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/automation)

@@ -18,6 +18,6 @@ function love.draw()
   love.graphics.print(tostring(down),10,10)
   --love.graphics.print(cursorX,10,10)
   --love.graphics.print(cursorY,10,30)
-  love.graphics.rectangle("fill",aX,aY,cursorX,cursorY)
+  love.graphics.rectangle("fill",aX,aY,cursorX-aX,cursorY-aY)
 
 end

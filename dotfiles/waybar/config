@@ -122,11 +122,14 @@
     "max-length": 10,
   },
   "custom/mpd": {
+    "format": "{text}",
     "exec": "/home/bhu2/.config/waybar/mpd-scrolling-text.sh",
+    "return-type": "json",
+    "interval": 1,
     "tooltip": true,
     "on-click": "mpc toggle",
     "on-click-right": "mpc prev",
     "on-click-middle": "mpc next",
-    },
+    }
 
 }

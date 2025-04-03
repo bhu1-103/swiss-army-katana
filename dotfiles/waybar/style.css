@@ -85,6 +85,7 @@ tooltip * {
 #wireplumber,
 #network,
 #tray,
+#custom-mpd
 #backlight {
   padding: 6px 8px;
 }
@@ -140,6 +141,31 @@ tooltip * {
   font-size: 14px;
 }
 
-#mpd {
+#custom-mpd {
+  padding: 4px 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  animation: borderShift 10s ease infinite;
+}
 
+@keyframes borderShift {
+  0% {
+    border-color: #ff0066;
+  }
+  25% {
+    border-color: #00ffff;
+  }
+  50% {
+    border-color: #ff0066;
+  }
+  75% {
+    border-color: #00ffff;
+  }
+  100% {
+    border-color: #ff0066;
+  }
 }

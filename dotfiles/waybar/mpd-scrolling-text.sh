@@ -1,36 +1,47 @@
 #!/usr/bin/bash
 
+play_emojis=(
+  "🎸" "🎶" "🎧" "🌟" "✨" "🔥" "🚀" "💃"
+  "🎵" "🎼" "📻" "🕺" "🎤" "🔊" "🔉" "📀" "💿" "🎷"
+  "🎺" "🥁" "🎹" "🎻" "🪕" "🎬" "🎥" "🎯" "🏆" "🌠"
+  "💫" "🌀" "🔮" "🪄" "🎭" "🎪"
+)
+
+pause_emojis=(
+  "⏸️" "🤫" "🛑" "🔇" "🤐" "🙊" "🔕" "😴" "💤" "🤔"
+  "🥱" "🌙" "🌛" "🌜" "🌓" "🌑" "🚦" "⏳" "⌛" "📴"
+  "📎" "🔗" "💭" "🧐" "📚" "✋" "🙅‍♂️" "🙅‍♀️" "🚫" "❌"
+  "💔" "🙃" "😶" "😐" "📵"
+)
+
+play_emoji="${play_emojis[$(( RANDOM % ${#play_emojis[@]} ))]}"
+pause_emoji="${pause_emojis[$(( RANDOM % ${#pause_emojis[@]} ))]}"
+
 display() {
   local scrolling_title="$1"
   local status="$2"
 
   if [ "$status" = "[paused]" ]; then
-    status2="paused"
-    echo "{\"text\": \"⏸${scrolling_title}\",\"tooltip\": \"song is ${status2}\"}"
+    echo "{\"text\": \"${pause_emoji}${scrolling_title}\",\"tooltip\": \"song is paused\"}"
   elif [[ "$status" = "[playing]" ]]; then
-    status2="playing"
-    echo "{\"text\": \"𝄞${scrolling_title}\",\"tooltip\": \"song is ${status2}\"}"
+    echo "{\"text\": \"${play_emoji}${scrolling_title}\",\"tooltip\": \"song is playing\"}"
+  else
+    echo "{\"text\": \"⏹ Stopped\", \"tooltip\": \"No song playing\"}"
   fi
 }
 
+title=$(mpc current --format "%title% - %artist%")
+if [ -z "$title" ]; then
+  title="____________.____"
+fi
 
-while true; do
-  title=$(mpc current --format "%title% - %artist%")
-  if [ -z "$title" ]; then
-    title="________________/\____"
-  fi
+status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
 
-  status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
-  scrolling_title="${title}       "
+#title="      ${title}      "
+scrolling_title="${title}${title}"
 
-  for ((i=0;i<${#title};i++));do
-    scrolling_title="${scrolling_title:1}${scrolling_title:0:1}"
-    display "${scrolling_title:0:20}" "$status"
-    sleep 0.5
-    new_title=$(mpc current --format "%title% - %artist%")
-    new_status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
-    if [ "$new_title" != "$title" ] || [ "$new_status" != "$status" ]; then
-      break
-    fi
-  done
-done
+pos=$(( $(date +%s) % ${#title} ))
+
+scrolling_title=$(printf "%-20s" "${title:pos:20}")
+
+display "$scrolling_title" "$status"

@@ -1,49 +1,36 @@
-#!/usr/bin/zsh
+#!/usr/bin/bash
 
-max_length=25
-delay=0.5
+display() {
+  local scrolling_title="$1"
+  local status="$2"
+
+  if [ "$status" = "[paused]" ]; then
+    status2="paused"
+    echo "{\"text\": \"⏸${scrolling_title}\",\"tooltip\": \"song is ${status2}\"}"
+  elif [[ "$status" = "[playing]" ]]; then
+    status2="playing"
+    echo "{\"text\": \"𝄞${scrolling_title}\",\"tooltip\": \"song is ${status2}\"}"
+  fi
+}
+
 
 while true; do
-    mpd_status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
-    song=$(mpc current --format "%title% - %artist%")
+  title=$(mpc current --format "%title% - %artist%")
+  if [ -z "$title" ]; then
+    title="________________/\____"
+  fi
 
-    if [[ -z "$song" ]]; then
-        if [[ $mpd_status == "[paused]" ]]; then
-            song="⏸ Paused - Click to Resume ▶"
-        else
-            song="🔇 Click here to start playing music"
-        fi
-    else
-        song="🎵 Now Playing: $song"
+  status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
+  scrolling_title="${title}       "
+
+  for ((i=0;i<${#title};i++));do
+    scrolling_title="${scrolling_title:1}${scrolling_title:0:1}"
+    display "${scrolling_title:0:20}" "$status"
+    sleep 0.5
+    new_title=$(mpc current --format "%title% - %artist%")
+    new_status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
+    if [ "$new_title" != "$title" ] || [ "$new_status" != "$status" ]; then
+      break
     fi
-
-    if [[ ${#song} -le $max_length ]]; then
-        json_output="{\"text\": \"$song\", \"tooltip\": \"$song\"}"
-        echo "$json_output" | jq -r '.text'
-        sleep 1
-    else
-        song="   $song   "
-        full_length=${#song}
-
-        for i in {1..$((full_length - max_length + 1))}; do
-            new_status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
-            new_song=$(mpc current --format "%title% - %artist%")
-
-            if [[ -z "$new_song" ]]; then
-                if [[ $new_status == "[paused]" ]]; then
-                    song="⏸ Paused - Click to Resume ▶"
-                else
-                    song="🔇 No Music"
-                fi
-                break
-            else
-                song="🎵 Now Playing: $new_song"
-            fi
-
-            scroll_text=${song[$i,$((i + max_length - 1))]}
-            json_output="{\"text\": \"$scroll_text\", \"tooltip\": \"$song\"}"
-            echo "$json_output" | jq -r '.text'
-            sleep $delay
-        done
-    fi
+  done
 done

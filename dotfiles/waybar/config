@@ -4,7 +4,9 @@
 
   "modules-left": [
 		"hyprland/workspaces",
+    "mpd"
 	],
+
   "modules-center": [
 		"clock"
 	],
@@ -119,4 +121,19 @@
     "format": "   {}% ",
     "max-length": 10,
   },
+  "mpd": {
+    "format": "{stateIcon} {title} - {artist}",
+    "format-paused": " {title} - {artist}",
+    "format-stopped": " No music",
+    "state-icons": {
+      "playing": "",
+      "paused": "",
+      "stopped": ""
+    },
+    "on-click": "mpc toggle",
+    "on-click-right": "mpc next",
+    "on-click-middle": "mpc prev",
+    "exec": "/home/bhu2/.config/waybar/mpd-truncate.sh"
+  }
+
 }

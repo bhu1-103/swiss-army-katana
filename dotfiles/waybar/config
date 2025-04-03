@@ -4,7 +4,7 @@
 
   "modules-left": [
 		"hyprland/workspaces",
-    "mpd"
+    "custom/mpd"
 	],
 
   "modules-center": [
@@ -121,19 +121,10 @@
     "format": "   {}% ",
     "max-length": 10,
   },
-  "mpd": {
-    "format": "{stateIcon} {title} - {artist}",
-    "format-paused": " {title} - {artist}",
-    "format-stopped": " No music",
-    "state-icons": {
-      "playing": "",
-      "paused": "",
-      "stopped": ""
+  "custom/mpd": {
+    "exec": "/home/bhu2/.config/waybar/mpd-scrolling-text.sh",
+    "tooltip": true,
+    "tooltip-format": "ok",
     },
-    "on-click": "mpc toggle",
-    "on-click-right": "mpc next",
-    "on-click-middle": "mpc prev",
-    "exec": "/home/bhu2/.config/waybar/mpd-truncate.sh"
-  }
 
 }

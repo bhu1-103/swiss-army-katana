@@ -124,7 +124,9 @@
   "custom/mpd": {
     "exec": "/home/bhu2/.config/waybar/mpd-scrolling-text.sh",
     "tooltip": true,
-    "tooltip-format": "ok",
+    "on-click": "mpc toggle",
+    "on-click-right": "mpc prev",
+    "on-click-middle": "mpc next",
     },
 
 }

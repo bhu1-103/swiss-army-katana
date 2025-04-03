@@ -74,7 +74,7 @@ tooltip * {
   border: 2px solid @accent;
   border-radius: 2px 2px 10px 10px;
   border-color: #ff0066;
-  font-size: 24;
+  font-size: 24px;
   font-weight: bolder;
 }
 
@@ -138,4 +138,8 @@ tooltip * {
 #custom-notifications {
   padding-right: 10px;
   font-size: 14px;
+}
+
+#mpd {
+
 }

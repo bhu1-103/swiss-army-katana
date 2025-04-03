@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-max_length=25
+max_length=20
 delay=0.5
 
 while true; do

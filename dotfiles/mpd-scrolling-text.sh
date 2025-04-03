@@ -1,32 +1,46 @@
-#!/usr/bin/zsh
+#!/usr/bin/bash
 
-max_length=20
-delay=0.5
+play_emojis=(
+  "🎸" "🎶" "🎧" "𝄞" "★" "🌟" "✨" "🔥" "🚀" "💃"
+  "🎵" "🎼" "📻" "🕺" "🎤" "🔊" "🔉" "📀" "💿" "🎷"
+  "🎺" "🥁" "🎹" "🎻" "🪕" "🎬" "🎥" "🎯" "🏆" "🌠"
+  "💫" "🌀" "🔮" "🪄" "🎭" "🎪"
+)
 
-while true; do
-    mpd_status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
-    song=$(mpc current --format "%title% - %artist%")
+pause_emojis=(
+  "⏸️" "🤫" "🛑" "🔇" "🤐" "🙊" "🔕" "😴" "💤" "🤔"
+  "🥱" "🌙" "🌛" "🌜" "🌓" "🌑" "🚦" "⏳" "⌛" "📴" "📵"
+  "📎" "🔗" "💭" "🧐" "📚" "✋" "🙅‍♂️" "🙅‍♀️" "🚫" "❌"
+  "💔" "🙃" "😶" "😐"
+)
 
-    song="🎵 Now Playing: $song"
+play_emoji="${play_emojis[$(( RANDOM % ${#play_emojis[@]} ))]}"
+pause_emoji="${pause_emojis[$(( RANDOM % ${#pause_emojis[@]} ))]}"
 
-    if [[ ${#song} -le $max_length ]]; then
-        json_output="{\"text\": \"$song\", \"tooltip\": \"$song\"}"
-        echo "$json_output" | jq -r '.text'
-        sleep 1
-    else
-        song="   $song   "
-        full_length=${#song}
+display() {
+  local scrolling_title="$1"
+  local status="$2"
 
-        for i in {1..$((full_length - max_length + 1))}; do
-            new_status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
-            new_song=$(mpc current --format "%title% - %artist%")
+  if [ "$status" = "[paused]" ]; then
+    echo "{\"text\": \"${pause_emoji}${scrolling_title}\",\"tooltip\": \"song is paused\"}"
+  elif [[ "$status" = "[playing]" ]]; then
+    echo "{\"text\": \"${play_emoji}${scrolling_title}\",\"tooltip\": \"song is playing\"}"
+  else
+    echo "{\"text\": \"⏹ Stopped\", \"tooltip\": \"No song playing\"}"
+  fi
+}
 
-            song="🎵 Now Playing: $new_song"
+title=$(mpc current --format "%title% - %artist%")
+if [ -z "$title" ]; then
+  title="____________.____"
+fi
 
-            scroll_text=${song[$i,$((i + max_length - 1))]}
-            json_output="{\"text\": \"$scroll_text\", \"tooltip\": \"$song\"}"
-            echo "$json_output" | jq -r '.text'
-            sleep $delay
-        done
-    fi
-done
+status=$(mpc status | grep -Eo '\[playing\]|\[paused\]')
+
+title="      ${title}      "
+
+pos=$(( $(date +%s) % ${#title} ))
+
+scrolling_title="${title:pos:20}"
+
+display "$scrolling_title" "$status"

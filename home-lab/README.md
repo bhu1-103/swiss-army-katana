@@ -1,5 +1,13 @@
 # home lab setup to practice
 
-pull kali linux iso using wget
+install qemu-full (just in case, but qemu-base should do good)
 
-actually, get live, not baremetal, as baremetal takes hours to install, [here](https://cdimage.kali.org/kali-2025.1a/kali-linux-2025.1a-live-amd64.iso)
+pull void linux iso using wget -> run setup.sh
+
+run boot.sh
+
+open terminal in void linux, run `sudo void-install`
+
+follow installation instructions and you should be good
+
+do not assign a filesystem for /boot tho, just leave it as it is

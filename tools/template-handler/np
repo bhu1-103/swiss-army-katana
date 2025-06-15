@@ -6,23 +6,31 @@ if [[ $# -eq 3 ]]; then
 	if [[ "$lang" = "cpp" ]]; then
 		if [[ "$arg" = "cpp" ]]; then
 			mkdir -p $input
-			mkdir -p $input/source
+			mkdir -p $input/src
 			cp /home/bhu2/dev/cpp/.template/makefiles/Makefile-cpp $input/Makefile
-			cp -r /home/bhu2/dev/cpp/.template/source/main-cpp.cpp $input/source/main.cpp
+			cp -r /home/bhu2/dev/cpp/.template/src/main-cpp.cpp $input/src/main.cpp
 			echo "IRASSHAIMASE"
 		elif [[ "$arg" = "ray" ]]; then
 			mkdir -p $input
-			mkdir -p $input/source
+			mkdir -p $input/src
 			cp /home/bhu2/dev/cpp/.template/makefiles/Makefile-raylib $input/Makefile
-			cp -r /home/bhu2/dev/cpp/.template/source/main-raylib.cpp $input/source/main.cpp
+			cp -r /home/bhu2/dev/cpp/.template/src/main-raylib.cpp $input/src/main.cpp
 			echo "IRASSHAIMASE"
 		elif [[ "$arg" = "opengl" ]]; then
 			mkdir -p $input
-			mkdir -p $input/source
+			mkdir -p $input/src
 			cp /home/bhu2/dev/cpp/.template/makefiles/Makefile-opengl $input/Makefile
-			cp -r /home/bhu2/dev/cpp/.template/source/main-opengl.cpp $input/source/main.cpp
+			cp -r /home/bhu2/dev/cpp/.template/src/main-opengl.cpp $input/src/main.cpp
 			echo "OKAERI"
-		else
+		elif [[ "$arg" = "glsl" ]]; then
+			mkdir -p $input
+			mkdir -p $input/src
+			cp /home/bhu2/dev/cpp/.template/makefiles/Makefile-glsl $input/Makefile
+			cp -r /home/bhu2/dev/cpp/.template/src/main-glsl.cpp $input/src/main.cpp
+      cd $input
+      unzip /home/bhu2/dev/cpp/.template/glad.zip
+			echo "OKAERI"	
+    else
 			echo "KIOTSKETE"
 			exit 1
 		fi

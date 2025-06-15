@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall -g
-SRC_DIR = source
+SRC_DIR = src
 BUILD_DIR = build
 TARGET = pls-work
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)

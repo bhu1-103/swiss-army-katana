@@ -1,113 +1,37 @@
-# swiss-army-katanaa
+# swiss-army-katana
+A collection of personal projects and tools I've developed in my free time.
 
-Tools and programs I write at free time that helps me in day to day tasks and increases productivity.
+## Demos
 
-Also check out some of my automation tools here.
+| 3D Ray-Casted World | Synthwave Animation | Circle Algorithm |
+| :---: | :---: | :---: |
+| ![3d world](/assets/3d-world.gif) | ![synthwave animation](/assets/synthwave-sun.gif) | ![circle](/assets/circle-updated.gif) |
 
-## My libraries ->
-[synthwave.h](lib/synthwave/synthwave.cpp)
+## Featured Projects
 
-[customized version of synthwave.h for displaying access points and stations](https://github.com/bhu1-103/KAPPI/blob/main/step2/v0.4/source/synthwave.cpp).
+### [Sasta-ChatGPT](https://github.com/bhu1-103/swiss-army-katana/tree/main/sasta-chatgpt)
+A Retrieval-Augmented Generation (RAG) tool that uses a local LLM (via Ollama) to answer questions about a given knowledge base. It fetches content from sources like Wikipedia, processes it, and uses a sentence-transformer model to find relevant context for the user's query.
 
-check out the whole project [here](https://github.com/bhu1-103/KAPPI/tree/main/step2/v0.4)
+### [ASCII Art Converter](https://github.com/bhu1-103/swiss-army-katana/tree/main/ascii-art-converter)
+A Python tool that converts images into ASCII art. It uses a simple PyTorch model to map pixel brightness to a corresponding set of ASCII characters.
 
-## demos
+### [Graphics Programming with OpenGL](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl)
+This directory contains various experiments with OpenGL, including:
+- A **Doom-like 3D engine** that uses 2D ray casting to render a 3D perspective.
+- A series of **Synthwave-style animations** exploring 3D transformations and camera movement.
+- A basic 3D cube and other smaller projects.
 
-- how computers make circles (click [here](/tools/automation/circle.sh) if you want to see how I made this gif) ([old version](/assets/circle.gif))
-![circle](/assets/circle-updated.gif)
+### [Console Homebrew (NDS & PSP)](https://github.com/bhu1-103/swiss-army-katana/tree/main/libnds)
+A collection of small projects written in C for the Nintendo DS and PlayStation Portable. These experiments involve direct hardware interaction for tasks like reading controller input, rendering basic 2D/3D graphics, and recording audio from the DS microphone.
 
-- fps template
-![3d world](/assets/3d-world.gif)
+### [Voice Assistant](https://github.com/bhu1-103/swiss-army-katana/tree/main/assistant)
+A simple voice assistant built with a shell script. It uses `ffmpeg` for audio capture and the `vosk-transcriber` library for speech-to-text, allowing it to perform basic commands like opening applications.
 
-- synthwave animation v0.2
-![synthwave animation](/assets/synthwave-mountains.gif)
+## Scripts & Utilities
+This repository also contains a variety of smaller scripts and tools to automate tasks, including:
+- **[np](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler):** A script to quickly scaffold new C++ projects from templates.
+- **[auto-rotate](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/auto-rotate):** A script for enabling automatic screen rotation on laptops with accelerometers.
+- **[timer.sh](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/timer-bspwm.sh):** A simple countdown timer that sends notifications and can switch workspaces.
 
-- synthwave animation v0.3
-![synthwave animation](/assets/synthwave-sun.gif)
-
-- customized firefox
-![setup-firefox.png](/assets/firefox-homepage.png)
-
-- doom remake (gave up, excuse the low resolution, still a beginner using ffmpeg)
-![doom remake](/assets/doom_demo.gif)
-
-- Check out my dots [here](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
-
-
-## [voice assistant](https://github.com/bhu1-103/swiss-army-katana/tree/main/assistant/assistant.sh)
-- The shell script uses [vosk transcriber](https://alphacephei.com/vosk/) to convert speech to text.
-- It then parses the first word and depending on the action, performs the action.
-- Integrate with your WM/DE for best performance.
-- [x] Resource efficient [model](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip) used
-- [x] Open desktop applications like firefox.
-- [x] Work alongside xdotool (keyboard and mouse emulation) and other tools for infinite freedom.
-- [ ] Sudo password stored inside the shell script itself, making it vulnerable to threat actors.
-- [x] Integrate it into polybar/waybar or make a custom dmenu/rofi menu to call it anytime.
-- [ ] Start converting to text as soon as silence is detected.
-- [ ] talkback using ~kokoro tts (too slow for real time usage)~ or espeak with phonemes.
-- dependencies: vosk-transcriber (pip install vosk-transcriber), you can replace alacritty, ffmpeg, dunstify, etc tools with any you like.
-
-## [doom-like 3d world using 2d graphics](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl/doom-limited)
-- Thanks to [ray casting](https://en.wikipedia.org/wiki/Ray_casting), we can make a semi-3d world by just using a 2d graphics.
-- First we make a top down world as in older rpgs and dungeon crawlers and then we use some math to convert it into 3d.
-- [Fish eye effect](https://en.wikipedia.org/wiki/Fisheye_lens) can be fixed.
-- [x] 3d world.
-- [x] Roam around in the map freely.
-- [ ] Add collisions.
-- [ ] Map maker.
-- [ ] Add enemies.
-
-## [TIC-80](https://github.com/bhu1-103/swiss-army-katana/tree/main/tic-80)
-### [Movement and sprite wrapping](https://github.com/bhu1-103/swiss-army-katana/blob/main/tic-80/sprite-wrap.tic)
-- [x] Basic program to move meatboy around and implementing sprite wrapping.
-- [x] Jump physics that actually feel good.
-- [ ] Map implementation
-
-## [graph plotter](https://github.com/bhu1-103/swiss-army-katana/blob/main/opengl/lattice-gradient/lattice_opengl.cpp)
-- One of my first opengl projects.
-- Gradient made using for loop. Just increment R,G,B values. Cycle the values between 0 to 255 for better effect.
-- [x] Plot points and lines.
-- [x] Plot custom functions (curves).
-- [ ] Scroll across the map and zoom functionality.
-- [ ] Add a post compilation method in editor similar to desmos.
-
-
-## [np (new-project)](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler) 
-- Productivity max. Copy-pastes templates and makefiles from a local hidden folder. Currently works for c++.
-- usage -> ` np [language] [library] [file_name] `.
-- [x] C++ raylib.
-- [x] C++ opengl.
-- [ ] More customization options.
-- [ ] More languages.
-
-## [timer.sh](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/timer.sh) 
-- A simple timer program that automatically switches to the desired workspace and constantly notifies. Good for people who get lost in thought.
-- usage -> ` timer [number of seconds] [workspace to switch to] [interval] `.
-- [x] Workspace switch after time.
-- [x] Constant annoying notifications.
-- [ ] Integrate with [polybar](https://github.com/polybar/polybar) or [rofi](https://github.com/davatorium/rofi) for non console access.
-- [ ] Replace with a better algorithm and remove sleep.
-
-## [automatic brightness](https://github.com/bhu1-103/swiss-army-katana/tools/auto-brightness)
-- Want to get automatic screen brightness on your laptop?
-- Check if you have [iio-sensors-proxy](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/) installed. If not, download it from your distro provider or from [here](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/).
-- usage -> run `monitor-sensor > light_values.txt` and `./apply-light.sh`.
-- [x] Auto brightness.
-- [x] Logarithmic brightness adjustment. Might not work good everywhere due to differences in hardware.
-- [ ] Make it run in all systems by retrieving system information.
-- [ ] ~~Improve update frequency to make it smoother~~.
-- [ ] Decrease update frequency and make it more efficient. Fix extensive resource usage.
-- [ ] **Implement smooth dimming**.
-
-## [auto-rotate in laptop](https://github.com/bhu1-103/swiss-army-katana/tools/auto-rotate)
-- Pretty good except for the infinite `for` loop...
-- usage -> run `./autorotate.sh` and keep the other files, [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen.sh), [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/invert-screen-v.sh) and also [this](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/auto-rotate/normal-screen-v.sh) in the same directory.
-- [x] Functional and reliable auto-rotate.
-- [ ] Fix extensive resource usage.
-- [ ] ~Get rid of the stupid loop and try making it a cronjob.~
-- [ ] only consider delta changes.
-- [ ] **Make an accelerometer and gyroscope visualiser**.
-
-## [automation scripts](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/automation)
-### [auto-mousemove](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/automation)
-- Remind me in 1 day.
+## [Dotfiles](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
+My personal configuration files for various tools and window managers like Hyprland, bspwm, and i3.

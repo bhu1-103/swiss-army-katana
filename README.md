@@ -12,26 +12,23 @@ A collection of personal projects and tools I've developed in my free time.
 ### [Sasta-ChatGPT](https://github.com/bhu1-103/swiss-army-katana/tree/main/sasta-chatgpt)
 A Retrieval-Augmented Generation (RAG) tool that uses a local LLM (via Ollama) to answer questions about a given knowledge base. It fetches content from sources like Wikipedia, processes it, and uses a sentence-transformer model to find relevant context for the user's query.
 
-### [ASCII Art Converter](https://github.com/bhu1-103/swiss-army-katana/tree/main/ascii-art-converter)
-A Python tool that converts images into ASCII art. It uses a simple PyTorch model to map pixel brightness to a corresponding set of ASCII characters.
-
 ### [Graphics Programming with OpenGL](https://github.com/bhu1-103/swiss-army-katana/tree/main/opengl)
-This directory contains various experiments with OpenGL, including:
-- A **Doom-like 3D engine** that uses 2D ray casting to render a 3D perspective.
-- A series of **Synthwave-style animations** exploring 3D transformations and camera movement.
-- A basic 3D cube and other smaller projects.
+This directory contains various experiments with OpenGL, including a **Doom-like 3D engine** that uses 2D ray casting to render a 3D perspective, a series of **Synthwave-style animations**, and other smaller graphical projects.
 
-### [Console Homebrew (NDS & PSP)](https://github.com/bhu1-103/swiss-army-katana/tree/main/libnds)
-A collection of small projects written in C for the Nintendo DS and PlayStation Portable. These experiments involve direct hardware interaction for tasks like reading controller input, rendering basic 2D/3D graphics, and recording audio from the DS microphone.
+### [Maze Generator & Solver](https://github.com/bhu1-103/swiss-army-katana/tree/main/maze)
+A Python script that uses a recursive backtracking algorithm to generate complex mazes. It also includes a solver that uses a breadth-first search (BFS) to find a path from the start to the end, verifying that each generated maze is solvable.
+
+### [Game Prototyping in TIC-80](https://github.com/bhu1-103/swiss-army-katana/tree/main/tic-80)
+A collection of game mechanics experiments developed for the TIC-80 fantasy console. These projects focus on implementing core platformer physics, including refined jump mechanics, gravity, and sprite wrapping.
 
 ### [Voice Assistant](https://github.com/bhu1-103/swiss-army-katana/tree/main/assistant)
 A simple voice assistant built with a shell script. It uses `ffmpeg` for audio capture and the `vosk-transcriber` library for speech-to-text, allowing it to perform basic commands like opening applications.
 
 ## Scripts & Utilities
 This repository also contains a variety of smaller scripts and tools to automate tasks, including:
+- **[PDF to Audiobook](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/pdf2audiobook):** A set of scripts that convert PDF files into audiobooks by extracting text, cleaning it, and using a text-to-speech engine.
 - **[np](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/template-handler):** A script to quickly scaffold new C++ projects from templates.
 - **[auto-rotate](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/auto-rotate):** A script for enabling automatic screen rotation on laptops with accelerometers.
-- **[timer.sh](https://github.com/bhu1-103/swiss-army-katana/blob/main/tools/timer-bspwm.sh):** A simple countdown timer that sends notifications and can switch workspaces.
 
 ## [Dotfiles](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 My personal configuration files for various tools and window managers like Hyprland, bspwm, and i3.

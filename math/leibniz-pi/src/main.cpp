@@ -39,7 +39,6 @@ int main()
       p1 = pow(-1,i);
       p2 = 2*i + 1;
       p3 = p1/p2;
-      cout << p3 << endl;
       pi025 += p3;
       int x = i;
       int y = screen.height * (1 - sfx) / (2) - (int)(p3 * (sf.y) * screen.height / 2);

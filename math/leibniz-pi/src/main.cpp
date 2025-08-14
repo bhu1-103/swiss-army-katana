@@ -16,14 +16,14 @@ struct Sf //scaling factor
 int main()
 {
   Screen screen = {2560,1440};
-  Sf sf = {10,4};
-  double pi025 = 0;
+  Sf sf = {10,2};
+  //double pi025 = 0.0f;
   float sfx = (sf.y - 1)/(sf.y);
   InitWindow(screen.width,screen.height,"Leibniz pi");
   SetTargetFPS(60);
   int prec;
   double p1,p2,p3;
-  float lt = 1;
+  float lt = 5;
   //Vector2 start, end;
 	cout << "enter number of digits of precision required: ";
   cin >> prec;
@@ -32,12 +32,15 @@ int main()
   {
     BeginDrawing();
     ClearBackground(BLACK);
+    double pi025 = 0.0f;
     Prev prev = {0,screen.height * (1/2)};
-    for(int i=1; i<prec; i++)
+    for(int i=0; i<prec; i++)
     {
       p1 = pow(-1,i);
       p2 = 2*i + 1;
       p3 = p1/p2;
+      cout << p3 << endl;
+      pi025 += p3;
       int x = i;
       int y = screen.height * (1 - sfx) / (2) - (int)(p3 * (sf.y) * screen.height / 2);
       Vector2 start = { float(prev.x * sf.x), float(prev.y * sf.y)};
@@ -46,9 +49,9 @@ int main()
       prev.x = x;
       prev.y = y;
     }
+    cout << "value of pi is: " << fixed << setprecision(20) << pi025 * 4 << endl << endl;
     EndDrawing();
   }
-  cout << "value of pi is: " << fixed << setprecision(20) << pi025 * 4;
 
 	return 0;
 }

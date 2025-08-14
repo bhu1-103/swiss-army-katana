@@ -2,6 +2,11 @@ this seems like fun
 
 <table>
     <tr>
-        <td><img src="assets/leibniz.png" width="200"></td>
+        <td>
+            <figure>
+                <img src="assets/leibniz.png" width="200">
+                <figcaption>Leibniz Pi Series</figcaption>
+            </figure>
+        </td>
     </tr>
 </table>

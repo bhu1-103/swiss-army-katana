@@ -74,7 +74,7 @@ void keyboardCallback(unsigned char key, int x, int y)
         if(key == 'a'){povX -= 0.1f;cenX -= 0.1f;glutPostRedisplay();}
         if(key == 'm'){povZ += 0.1f;cenZ += 0.1f;glutPostRedisplay();}
         if(key == 'q'){povZ -= 0.1f;cenZ -= 0.1f;glutPostRedisplay();}
-        if(key == 'e'){povZ += 0.1f;cenZ += 0.1f;glutPostRedisplay();}
+        if(key == 'e'){povZ += 0.1f;cenZ -= 0.1f;glutPostRedisplay();}
 
         if(key == 'z'){povX += 0.1f;cenX += 0.1f;glutPostRedisplay();} //dungeon crawler 90 degree rotation
         if(key == 'x'){povX -= 0.1f;cenX -= 0.1f;glutPostRedisplay();}

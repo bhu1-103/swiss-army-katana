@@ -1,16 +1,22 @@
+import requests
+from bs4 import BeautifulSoup
 from langchain_community.chat_models.ollama import ChatOllama
 from langchain_community.embeddings import OllamaEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import PyPDFLoader
 from langchain.chains import RetrievalQA
+from langchain.schema import Document
 
-llm = ChatOllama(model="llama3.2:1b", verbose=True)
-
+llm = ChatOllama(model="gemma3n:e2b", verbose=True)
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
-loader = PyPDFLoader("resume.pdf")
-docs = loader.load()
+url = "https://en.wikipedia.org/wiki/Persona_5"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+paragraphs = soup.find_all("p")
+text = "\n".join([p.get_text() for p in paragraphs if p.get_text().strip() != ""])
+docs = [Document(page_content=text, metadata={"source": url})]
+
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 chunks = text_splitter.split_documents(docs)
 
@@ -23,6 +29,6 @@ qa_chain = RetrievalQA.from_chain_type(
     retriever=retriever
 )
 
-query = "is this resume good for a 21 year old?"
+query = "What is the main theme of Persona 5?"
 answer = qa_chain.run(query)
 print(answer)

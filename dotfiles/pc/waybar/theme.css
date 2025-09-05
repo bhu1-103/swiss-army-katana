@@ -1,0 +1,33 @@
+/* Cyberpunk Theme */
+
+/* Base border color*/
+@define-color border-main #03D8F3;
+@define-color border-alt #03D8F3;
+
+/* Background Colors */
+@define-color bg-main #0A0A1A;
+@define-color bg-alt #FF1492;
+@define-color bg-hover #8A2CE2;
+@define-color bg-hover-alt #6B22B5;
+@define-color bg-tooltip @bg-main;
+@define-color bg-second #1A1A2A;
+@define-color bg-third #FF1492;
+@define-color sway-bg @bg-main;
+
+/*text color for entries, views and content in general */
+@define-color fg-main #03D8F3;
+@define-color fg-unactive #02A9BB;
+@define-color content-act #03D8F3;
+
+
+/* Player colors */
+@define-color ply-main #1A1A2A;
+@define-color ply-hover #8A2CE2;
+@define-color ply-act #2A2A3A;
+@define-color msc-act #1A1A2A;
+
+/* Wlogout */
+
+@define-color wlogout-hover rgba(26, 26, 42, 0.5);
+@define-color wlogout-bg rgba(10, 10, 26, 0.5);
+@define-color wlogout-button rgba(10, 10, 26, 0.7);

@@ -67,25 +67,22 @@
 
 // ====================== Media ======================
 
-"mpris": {
-    
-    "format": "{status_icon}",
-    
-    "player-icons": {
-      "default": "▶  Playing",
-      "mpd": ""},
-
-    "status-icons": {
-      "paused": "  Paused",
-      "playing": "  Playing",
-      "stopped": " Stopped",
+    "custom/player_toggle": {
+        "exec": "~/.config/waybar/player-state-icon.sh",
+        "return-type": "json",
+        "interval": 1,
+        "on-click": "~/.config/waybar/toggle-player.sh"
     },
-
+"custom/mpris": {
+    "format": "{text}",
+    "exec": "/home/bhu1/.config/waybar/mpris-scrolling-text.sh",
+    "return-type": "json",
+    "interval": 1,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "on-click-middle": "playerctl previous",
-
-    "tooltip": false
+    "on-scroll-up": "playerctl volume 0.1+",
+    "on-scroll-down": "playerctl volume 0.1-"
 },
 
 "custom/mpd": {
@@ -339,12 +336,22 @@
 },
     
 "group/leftSide": {
-	"orientation": "horizontal",
-	"modules": [
-            "mpris",
-            "custom/mpd",
-            "group/hardware"
-            ]
+    "orientation": "horizontal",
+    "modules": [
+        "custom/player_toggle",
+        "group/players",
+        "group/hardware"
+    ]
+},
+
+"group/players": {
+    "orientation": "horizontal",
+    "on-scroll-up": "~/.config/waybar/toggle-player.sh",
+    "on-scroll-down": "~/.config/waybar/toggle-player.sh",
+    "modules": [
+        "custom/mpris",
+        "custom/mpd"
+    ]
 },
 
 "group/rightSide": {

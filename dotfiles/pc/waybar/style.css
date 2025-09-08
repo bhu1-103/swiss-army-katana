@@ -64,7 +64,7 @@ tooltip label {
     padding: 0px 20px;
 }
 #workspaces button {
-    color: @fg-unactive;
+    color: gold;
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
     padding: 2px 10px;
     margin: 3px 4px;
@@ -74,7 +74,7 @@ tooltip label {
 }
 
 #workspaces button.active {
-    color: @fg-main;
+    color: @bg-alt;
     border-radius: 8px;
     background: @bg-main;
     padding: 0px 20px;
@@ -218,13 +218,13 @@ tooltip label {
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#mpris {
-	padding: 0px;
+#custom-mpris, #custom-mpd {
+    padding: 0px;
     margin: 0px 8px;
 }
 
-#custom-mpd {
-    margin: 0px 8px;
+#custom-player_toggle {
+    color: @bg-alt;
 }
 
 #mpris.paused {

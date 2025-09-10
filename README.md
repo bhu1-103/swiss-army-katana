@@ -32,3 +32,5 @@ This repository also contains a variety of smaller scripts and tools to automate
 
 ## [Dotfiles](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
 My personal configuration files for various tools and window managers like Hyprland, bspwm, and i3.
+
+## hosted my n8n dashboard using docker and cloudflared

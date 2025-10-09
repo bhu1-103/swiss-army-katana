@@ -11,3 +11,7 @@ open terminal in void linux, run `sudo void-install`
 follow installation instructions and you should be good
 
 do not assign a filesystem for /boot tho, just leave it as it is
+
+jellyfin server -> `watch.bhu1.xyz`
+
+n8n server -> `n8n.bhu1.xyz`

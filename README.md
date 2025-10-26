@@ -7,6 +7,12 @@ A collection of personal projects and tools I've developed in my free time.
 | :---: | :---: | :---: |
 | ![3d world](/assets/3d-world.gif) | ![synthwave animation](/assets/synthwave-sun.gif) | ![circle](/assets/circle-updated.gif) |
 
+## KARAOKE Engine
+
+| Theme 1 | Theme 2 | Theme 3 |
+| :---: | :---: | :---: |
+| ![theme1](/assets/karaoke-engine-1.png) | ![theme2](/assets/karaoke-engine-2.png) | ![theme3](/assets/karaoke-engine-3.png) |
+
 ## Featured Projects
 
 ### [Sasta-ChatGPT](https://github.com/bhu1-103/swiss-army-katana/tree/main/sasta-chatgpt)

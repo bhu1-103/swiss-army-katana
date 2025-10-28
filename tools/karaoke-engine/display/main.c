@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct {
+    int codepoint;
+    Vector2 position;
+    int paragraphIndex;
+} LyricGlyph;
+
 float GetNextLineWidth(const char *text, int startByteOffset, Font font, int fontSize, float spacing, float screenWidth)
 {
     float currentX = 0.0f;
@@ -34,59 +40,81 @@ float GetNextLineWidth(const char *text, int startByteOffset, Font font, int fon
     return currentX;
 }
 
-int CalculateTotalParagraphs(const char *text)
+void PrecalculateLayout(
+    const char *text, Font font, int fontSize, float spacing, float lineSpacing, float screenWidth, float textStartY,
+    LyricGlyph **outLayout, int *outLayoutCount,
+    int **outParagraphStarts, int *outParagraphCount)
 {
-    int count = 1; // Always at least one paragraph
+    if (*outLayout) free(*outLayout);
+    if (*outParagraphStarts) free(*outParagraphStarts);
+
+    *outLayoutCount = 0;
+    *outLayout = NULL;
+    *outParagraphCount = 1; 
+    *outParagraphStarts = malloc(sizeof(int));
+    (*outParagraphStarts)[0] = 0; 
+
+    float lineStartX = (screenWidth - GetNextLineWidth(text, 0, font, fontSize, spacing, screenWidth)) / 2.0f;
+    Vector2 position = { lineStartX, textStartY };
     int textByteOffset = 0;
+    int currentParagraph = 0;
+
     while (text[textByteOffset] != '\0')
     {
         int codepointLength = 0;
         int codepoint = GetCodepoint(&text[textByteOffset], &codepointLength);
+
         if (codepoint == '\n')
         {
-            count++;
+            lineStartX = (screenWidth - GetNextLineWidth(text, textByteOffset + codepointLength, font, fontSize, spacing, screenWidth)) / 2.0f;
+            position.x = lineStartX;
+            position.y += fontSize + lineSpacing;
+            textByteOffset += codepointLength;
+            
+            currentParagraph++;
+            (*outParagraphCount)++;
+            *outParagraphStarts = realloc(*outParagraphStarts, sizeof(int) * (*outParagraphCount));
+            (*outParagraphStarts)[currentParagraph] = *outLayoutCount; 
+
+            continue;
         }
+
+        GlyphInfo glyph = GetGlyphInfo(font, codepoint);
+        float charWidth = glyph.advanceX + spacing;
+
+        if (position.x + charWidth > screenWidth - 80 && position.x > lineStartX)
+        {
+            lineStartX = (screenWidth - GetNextLineWidth(text, textByteOffset, font, fontSize, spacing, screenWidth)) / 2.0f;
+            position.x = lineStartX;
+            position.y += fontSize + lineSpacing;
+        }
+
+        *outLayout = realloc(*outLayout, (*outLayoutCount + 1) * sizeof(LyricGlyph));
+        LyricGlyph *g = &(*outLayout)[*outLayoutCount];
+        
+        g->codepoint = codepoint;
+        g->position = position;
+        g->paragraphIndex = currentParagraph;
+
+        (*outLayoutCount)++;
+
+        position.x += charWidth;
         textByteOffset += codepointLength;
     }
-    return count;
 }
 
-int GetFirstCharIndexOfParagraph(const char *text, int targetParagraph, int *outByteOffset)
+bool IsParagraphEmpty(int paragraphIndex, int *pStarts, int pCount, int gCount)
 {
-    int paragraphIndex = 0;
-    int textByteOffset = 0;
-    int validCharIndex = 0;
-    
-    *outByteOffset = 0; 
-    
-    if (targetParagraph == 0) return 0; // Optimization for the first line
-
-    while (text[textByteOffset] != '\0' && paragraphIndex < targetParagraph)
+    if (paragraphIndex < pCount - 1) 
     {
-        int codepointLength = 0;
-        int codepoint = GetCodepoint(&text[textByteOffset], &codepointLength);
-
-        if (codepoint == '\n')
-        {
-            paragraphIndex++;
-            if (paragraphIndex == targetParagraph)
-            {
-                *outByteOffset = textByteOffset + codepointLength; // Start *after* the newline
-            }
-        }
-
-        if (codepoint != '/')
-        {
-            if (paragraphIndex < targetParagraph)
-            {
-                validCharIndex++;
-            }
-        }
-
-        textByteOffset += codepointLength;
+        return pStarts[paragraphIndex] == pStarts[paragraphIndex + 1];
     }
-    return validCharIndex; 
+    else 
+    {
+        return pStarts[paragraphIndex] == gCount;
+    }
 }
+
 
 int main(int argc, char *argv[])
 {
@@ -99,7 +127,7 @@ int main(int argc, char *argv[])
     const char *filePath = argv[1]; 
 
     const int screenWidth = 1600; 
-    const int screenHeight = 900;  
+    const int screenHeight = 900; 
     const int fontSize = 72;
     const float spacing = 2.0f;
     const float lineSpacing = 10.0f;
@@ -153,14 +181,24 @@ int main(int argc, char *argv[])
     char *peerText = NULL;
     Font font = { 0 };
     Font peerFont = { 0 };
-    char *activeText = NULL;
-    Font *activeFont = NULL;
-    
-    int totalParagraphs = 0; 
-    int peerTotalParagraphs = 0; 
-    int *activeTotalParagraphs = NULL; 
 
-    bool showHiragana = false;
+    LyricGlyph *layout = NULL;
+    int layoutCount = 0;
+    int *layoutParagraphStarts = NULL;
+    int layoutParagraphCount = 0;
+
+    LyricGlyph *peerLayout = NULL;
+    int peerLayoutCount = 0;
+    int *peerParagraphStarts = NULL;
+    int peerParagraphCount = 0;
+    
+    LyricGlyph **activeLayout = NULL;
+    int *activeLayoutCount = NULL;
+    int **activeParagraphStarts = NULL;
+    int *activeParagraphCount = NULL;
+    Font *activeFont = NULL;
+
+    bool showHiragana = false; 
     bool canSwitch = false;
 
     char peerFilePath[1024];
@@ -207,6 +245,15 @@ int main(int argc, char *argv[])
         peerFont = LoadFontEx("cousagi.ttf", fontSize, peerCodepoints, peerCodepointCount);
         UnloadCodepoints(peerCodepoints);
     }
+    
+    PrecalculateLayout(text, font, fontSize, spacing, lineSpacing, screenWidth, textStartY,
+                       &layout, &layoutCount, &layoutParagraphStarts, &layoutParagraphCount);
+    
+    if (canSwitch)
+    {
+        PrecalculateLayout(peerText, peerFont, fontSize, spacing, lineSpacing, screenWidth, textStartY,
+                           &peerLayout, &peerLayoutCount, &peerParagraphStarts, &peerParagraphCount);
+    }
 
     const char *rawBaseName = GetFileNameWithoutExt(filePath);
     char baseName[256]; 
@@ -248,24 +295,38 @@ int main(int argc, char *argv[])
     }
     bool musicPaused = false;
     
-    totalParagraphs = CalculateTotalParagraphs(text);
-    if (canSwitch) peerTotalParagraphs = CalculateTotalParagraphs(peerText);
-
-
-    if (showHiragana)
+    if (showHiragana) 
     {
-        activeText = text;
+        activeLayout = &layout;
+        activeLayoutCount = &layoutCount;
+        activeParagraphStarts = &layoutParagraphStarts;
+        activeParagraphCount = &layoutParagraphCount;
         activeFont = &font;
-        activeTotalParagraphs = &totalParagraphs; 
     }
-    else
+    else 
     {
-        activeText = peerText;
-        activeFont = &peerFont;
-        activeTotalParagraphs = &peerTotalParagraphs; 
+        if (canSwitch) 
+        {
+            activeLayout = &peerLayout;
+            activeLayoutCount = &peerLayoutCount;
+            activeParagraphStarts = &peerParagraphStarts;
+            activeParagraphCount = &peerParagraphCount;
+            activeFont = &peerFont;
+            
+            showHiragana = false; 
+        }
+        else 
+        {
+            activeLayout = &layout;
+            activeLayoutCount = &layoutCount;
+            activeParagraphStarts = &layoutParagraphStarts;
+            activeParagraphCount = &layoutParagraphCount;
+            activeFont = &font;
+            
+            showHiragana = true; 
+        }
     }
     
-    int highlightedChars = 0; // Still used by the camera
     int currentParagraphIndex = 0; 
     Camera2D camera = { 0 };
     camera.offset = (Vector2){ screenWidth / 2.0f, middleScreenY };
@@ -274,8 +335,6 @@ int main(int argc, char *argv[])
     camera.zoom = 1.0f;
     
     Rectangle sliderBar = { 70, screenHeight - 60, screenWidth - 140, 20 };
-    
-    float currentLineStartX = (screenWidth - GetNextLineWidth(activeText, 0, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
     
     SetTargetFPS(60);
 
@@ -295,9 +354,7 @@ int main(int argc, char *argv[])
             {
                 StopMusicStream(music);
                 PlayMusicStream(music);
-                highlightedChars = 0;
                 currentParagraphIndex = 0; 
-                currentLineStartX = (screenWidth - GetNextLineWidth(activeText, 0, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
             }
             if (IsKeyPressed(KEY_LEFT))
             {
@@ -332,40 +389,47 @@ int main(int argc, char *argv[])
             showHiragana = !showHiragana;
             if (showHiragana)
             {
-                activeText = text;
+                activeLayout = &layout;
+                activeLayoutCount = &layoutCount;
+                activeParagraphStarts = &layoutParagraphStarts;
+                activeParagraphCount = &layoutParagraphCount;
                 activeFont = &font;
-                activeTotalParagraphs = &totalParagraphs;
             }
             else
             {
-                activeText = peerText;
+                activeLayout = &peerLayout;
+                activeLayoutCount = &peerLayoutCount;
+                activeParagraphStarts = &peerParagraphStarts;
+                activeParagraphCount = &peerParagraphCount;
                 activeFont = &peerFont;
-                activeTotalParagraphs = &peerTotalParagraphs;
             }
-            
-            int startByteOffset = 0;
-            highlightedChars = GetFirstCharIndexOfParagraph(activeText, currentParagraphIndex, &startByteOffset);
-            
-            currentLineStartX = (screenWidth - GetNextLineWidth(activeText, startByteOffset, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
         }
 
-        int byteOffsetForLineStart = 0; 
-        
-        if (IsKeyPressed(KEY_DOWN)) 
+        if (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_SPACE)) 
         {
-            if (currentParagraphIndex < *activeTotalParagraphs - 1) 
+            if (currentParagraphIndex < *activeParagraphCount - 1) 
             {
-                currentParagraphIndex++;
-                int nextLineByteOffset = 0;
-                highlightedChars = GetFirstCharIndexOfParagraph(activeText, currentParagraphIndex, &nextLineByteOffset);
-                byteOffsetForLineStart = nextLineByteOffset;
-                currentLineStartX = (screenWidth - GetNextLineWidth(activeText, byteOffsetForLineStart, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
+                int newIndex = currentParagraphIndex + 1;
+                
+                while (newIndex < *activeParagraphCount - 1 && 
+                       IsParagraphEmpty(newIndex, *activeParagraphStarts, *activeParagraphCount, *activeLayoutCount))
+                {
+                    newIndex++;
+                }
+                
+                if (IsParagraphEmpty(newIndex, *activeParagraphStarts, *activeParagraphCount, *activeLayoutCount))
+                {
+                    currentParagraphIndex = 0; 
+                    if (musicLoaded) { StopMusicStream(music); PlayMusicStream(music); }
+                }
+                else
+                {
+                    currentParagraphIndex = newIndex; 
+                }
             } 
             else 
             {
                 currentParagraphIndex = 0;
-                highlightedChars = GetFirstCharIndexOfParagraph(activeText, 0, &byteOffsetForLineStart);
-                currentLineStartX = (screenWidth - GetNextLineWidth(activeText, byteOffsetForLineStart, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
                 if (musicLoaded) { StopMusicStream(music); PlayMusicStream(music); }
             }
         }
@@ -374,60 +438,26 @@ int main(int argc, char *argv[])
         {
              if (currentParagraphIndex > 0)
              {
-                 currentParagraphIndex--;
+                 int newIndex = currentParagraphIndex - 1;
+                 
+                 while (newIndex > 0 &&
+                        IsParagraphEmpty(newIndex, *activeParagraphStarts, *activeParagraphCount, *activeLayoutCount))
+                 {
+                     newIndex--;
+                 }
+                 
+                 currentParagraphIndex = newIndex;
              }
-             
-             highlightedChars = GetFirstCharIndexOfParagraph(activeText, currentParagraphIndex, &byteOffsetForLineStart);
-             currentLineStartX = (screenWidth - GetNextLineWidth(activeText, byteOffsetForLineStart, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
         }
         
         
-        Vector2 targetCharPos = { screenWidth / 2.0f, textStartY }; 
-        { 
-            float lineStartX = (screenWidth - GetNextLineWidth(activeText, 0, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
-            Vector2 calculationPos = { lineStartX, textStartY };
-            int textByteOffset = 0;
-            int validCharIndex = 0;
-            
-            int charToFind = highlightedChars;
-
-            while (textByteOffset < strlen(activeText) && activeText[textByteOffset] != '\0')
+        Vector2 targetCharPos = { screenWidth / 2.0f, textStartY };
+        if (*activeLayout && *activeParagraphCount > currentParagraphIndex)
+        {
+            int startGlyphIndex = (*activeParagraphStarts)[currentParagraphIndex];
+            if (startGlyphIndex < *activeLayoutCount)
             {
-                int codepointLength = 0;
-                int codepoint = GetCodepoint(&activeText[textByteOffset], &codepointLength);
-                if (codepoint == '\n')
-                {
-                    lineStartX = (screenWidth - GetNextLineWidth(activeText, textByteOffset + codepointLength, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
-                    calculationPos.x = lineStartX;
-                    calculationPos.y += fontSize + lineSpacing;
-                    textByteOffset += codepointLength;
-                    continue; 
-                }
-                GlyphInfo glyph = GetGlyphInfo(*activeFont, codepoint);
-                float charWidth = glyph.advanceX + spacing;
-                if (calculationPos.x + charWidth > screenWidth - 80 && calculationPos.x > lineStartX) 
-                {
-                    lineStartX = (screenWidth - GetNextLineWidth(activeText, textByteOffset, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
-                    calculationPos.x = lineStartX;
-                    calculationPos.y += fontSize + lineSpacing;
-                }
-                
-                if (validCharIndex == charToFind)
-                {
-                    targetCharPos = calculationPos;
-                    currentLineStartX = lineStartX;
-                    break;
-                }
-                
-                if (codepoint == '/')
-                {
-                    calculationPos.x += charWidth;
-                    textByteOffset += codepointLength;
-                    continue; 
-                }
-                calculationPos.x += charWidth;
-                textByteOffset += codepointLength;
-                validCharIndex++; 
+                targetCharPos = (*activeLayout)[startGlyphIndex].position;
             }
         }
         
@@ -441,53 +471,21 @@ int main(int argc, char *argv[])
         
         BeginMode2D(camera);
         {
-            float lineStartX = (screenWidth - GetNextLineWidth(activeText, 0, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
-            Vector2 position = { lineStartX, textStartY };
-            int textByteOffset = 0;
-            int currentDrawingParagraph = 0; 
-
-            while (textByteOffset < strlen(activeText) && activeText[textByteOffset] != '\0')
+            for (int i = 0; i < *activeLayoutCount; i++)
             {
-                int codepointLength = 0;
-                int codepoint = GetCodepoint(&activeText[textByteOffset], &codepointLength);
+                LyricGlyph *g = &(*activeLayout)[i];
+                Color color;
 
-                if (codepoint == '\n')
+                if (g->codepoint == '/')
                 {
-                    lineStartX = (screenWidth - GetNextLineWidth(activeText, textByteOffset + codepointLength, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
-                    position.x = lineStartX; 
-                    position.y += fontSize + lineSpacing; 
-                    textByteOffset += codepointLength; 
-                    currentDrawingParagraph++; 
-                    continue; 
+                    color = fgSeparator;
+                }
+                else
+                {
+                    color = (g->paragraphIndex <= currentParagraphIndex) ? fgActive : fgInactive;
                 }
                 
-                GlyphInfo glyph = GetGlyphInfo(*activeFont, codepoint);
-                float charWidth = glyph.advanceX + spacing;
-
-                if (position.x + charWidth > screenWidth - 80 && position.x > lineStartX) 
-                {
-                    lineStartX = (screenWidth - GetNextLineWidth(activeText, textByteOffset, *activeFont, fontSize, spacing, screenWidth)) / 2.0f;
-                    position.x = lineStartX;
-                    position.y += fontSize + lineSpacing;
-                }
-                
-                Vector2 drawPos = position; 
-                
-                if (codepoint == '/')
-                {
-                    DrawTextCodepoint(*activeFont, codepoint, drawPos, fontSize, fgSeparator);
-                    position.x += charWidth; 
-                    textByteOffset += codepointLength; 
-                    continue; 
-                }
-
-                // --- THIS IS THE ONLY CHANGE ---
-                // Highlight the current paragraph AND all previous ones.
-                Color color = (currentDrawingParagraph <= currentParagraphIndex) ? fgActive : fgInactive;
-                
-                DrawTextCodepoint(*activeFont, codepoint, drawPos, fontSize, color); 
-                position.x += charWidth;
-                textByteOffset += codepointLength;
+                DrawTextCodepoint(*activeFont, g->codepoint, g->position, fontSize, color);
             }
         }
         EndMode2D(); 
@@ -523,6 +521,11 @@ int main(int argc, char *argv[])
     UnloadFileText(text);
     if (peerText) UnloadFileText(peerText);
     
+    if (layout) free(layout);
+    if (layoutParagraphStarts) free(layoutParagraphStarts);
+    if (peerLayout) free(peerLayout);
+    if (peerParagraphStarts) free(peerParagraphStarts);
+
     UnloadFont(font);
     if (peerFont.texture.id != 0) UnloadFont(peerFont);
 

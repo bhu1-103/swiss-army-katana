@@ -4,5 +4,7 @@
 
 - [x] seamless switch between hiragana and kanji lyrics using [kanji-conv](https://github.com/sea-turt1e/kanjiconv)
 - [x] theming
-- [x] keyboard controls
-- [ ] use demucs to remove vocals from the songs for the perfect karaoke experience
+- [x] keyboard [controls](controls.md)
+- [ ] use demucs to remove vocals from the songs for the real karaoke experience
+- [x] lerp camera
+- [x] 

@@ -7,4 +7,3 @@
 - [x] keyboard controls (click [here](controls.md) for keyboard controls)
 - [ ] use demucs to remove vocals from the songs for the real karaoke experience
 - [x] lerp camera
-- [x] 

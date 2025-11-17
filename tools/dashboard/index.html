@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+
+<title>bhu1's dashboard — Amber CRT</title>
+
+<style>
+/* ========== Base & Typography (larger for handhelds) ========== */
+html,body {
+    height:100%;
+    margin:0;
+    padding:0;
+    background:#000;
+    color:#d79a32; /* amber */
+    font-family: "Lucida Console", Monaco, monospace, Arial;
+    font-size:18px; /* handheld-friendly */
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* container that simulates the CRT bezel and curve */
+#crt-shell {
+    width:100%;
+    max-width:880px;
+    margin:20px auto;
+    position:relative;
+    box-sizing:border-box;
+    padding:18px;
+    border-radius:14px;
+    border:6px solid #1a1200;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 80px rgba(0,0,0,0.6);
+    background: radial-gradient(ellipse at center, rgba(20,10,0,0.7) 0%, rgba(0,0,0,0.95) 70%);
+    overflow:hidden;
+}
+
+/* content area that will be low-res scaled */
+#crt-content {
+    position:relative;
+    width:100%;
+    height:320px;
+    overflow:hidden;
+    box-sizing:border-box;
+    margin:0 auto;
+    background:#000;
+    border-radius:6px;
+}
+
+/* simulate low-res rendering by scaling a small inner canvas */
+#lowres-stage {
+    position:absolute;
+    left:0; top:0;
+    width:100%;
+    height:100%;
+    transform-origin:0 0;
+    /* scale up to create blocky look; values chosen for handhelds */
+    transform: scale(1.25);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    /* tiny blur for phosphor softness (kept very small for Vita) */
+    -webkit-filter: blur(0.45px);
+    filter: blur(0.45px);
+}
+
+/* content inside lowres stage */
+#content {
+    width:100%;
+    height:100%;
+    box-sizing:border-box;
+    padding:12px;
+    position:relative;
+}
+
+/* Header */
+.header {
+    text-align:center;
+    margin-bottom:8px;
+}
+.header h1 {
+    margin:4px 0 6px 0;
+    font-size:26px;
+    color:#e3b564;
+    text-shadow: 0 0 8px rgba(227,181,100,0.9), 0 0 20px rgba(227,181,100,0.15);
+}
+
+/* slide wrapper */
+#wrap {
+    width:100%;
+    height:220px;
+    position:relative;
+    overflow:hidden;
+}
+
+/* the sliding strip (4 pages) */
+#slides {
+    width:400%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    -webkit-transition:left 0.42s cubic-bezier(.2,.8,.2,1);
+    transition:left 0.42s cubic-bezier(.2,.8,.2,1);
+}
+
+/* each page */
+.page {
+    float:left;
+    width:25%;
+    height:100%;
+    box-sizing:border-box;
+    padding:8px 14px;
+    color:#d9a441;
+}
+
+/* page titles */
+.page h3 {
+    margin:0 0 8px 0;
+    font-size:20px;
+    color:#ffd99b;
+    text-shadow: 0 0 8px rgba(255,217,139,0.9);
+}
+
+/* meter UI */
+.meter {
+    width:200px;
+    height:16px;
+    background:#160d02;
+    border:1px solid rgba(215,154,50,0.35);
+    margin:6px auto 6px auto;
+    position:relative;
+    overflow:hidden;
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,0.6);
+    border-radius:3px;
+}
+.fill {
+    position:absolute;
+    left:0; top:0;
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg, rgba(255,218,140,0.95) 0%, rgba(215,154,50,0.95) 100%);
+    box-shadow: 0 0 12px rgba(215,154,50,0.8);
+    -webkit-transition: width 0.45s ease;
+    transition: width 0.45s ease;
+}
+
+/* small text elements */
+.small {
+    font-size:14px;
+    color:#ffd; 
+    opacity:0.9;
+}
+
+/* dots and nav buttons */
+.controls { text-align:center; margin-top:8px; }
+button.nav {
+    background:transparent;
+    border:1px solid rgba(215,154,50,0.9);
+    color:#d79a32;
+    padding:8px 14px;
+    margin:6px;
+    border-radius:6px;
+    font-size:16px;
+}
+.dots { margin-top:6px; }
+.dot {
+    display:inline-block;
+    width:12px; height:12px;
+    border-radius:50%;
+    border:1px solid rgba(215,154,50,0.9);
+    margin:0 4px;
+    background:transparent;
+}
+.dot.active { background: rgba(215,154,50,0.95); }
+
+/* small responsive tweak for tiny screens */
+@media (max-width:420px){
+    #crt-shell { padding:12px; }
+    .header h1 { font-size:22px; }
+    .page h3 { font-size:18px; }
+    .meter { width:170px; height:14px; }
+    body { font-size:16px; }
+}
+
+/* ===================== EFFECT LAYERS (scanlines, grille, smear, retrace) ===================== */
+
+/* strong moving scanlines (thick + visible) */
+#scanlines {
+    pointer-events:none;
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    z-index:40;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 4px,
+        rgba(0,0,0,0.35) 5px,
+        rgba(0,0,0,0.35) 9px
+    );
+    opacity:0.38;
+    animation: scanMove 10s linear infinite;
+}
+@keyframes scanMove {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 400px; }
+}
+
+/* aperture grille / vertical bars */
+#grille {
+    pointer-events:none;
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    z-index:45;
+    background: repeating-linear-gradient(
+        to right,
+        rgba(0,0,0,0.18) 0px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0) 3px
+    );
+    opacity:0.50;
+}
+
+/* phosphor smear: subtle amber vertical smear for ghosting */
+#smear {
+    pointer-events:none;
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    z-index:42;
+    background: linear-gradient(to bottom, rgba(215,154,50,0.06), rgba(215,154,50,0));
+    mix-blend-mode: screen;
+    opacity:0.9;
+}
+
+/* rolling retrace beam (bright sweep) */
+#retrace {
+    pointer-events:none;
+    position:absolute;
+    left:0; top:-25%;
+    width:100%; height:18%;
+    z-index:50;
+    background: linear-gradient(to bottom, rgba(255,215,140,0.18), rgba(255,215,140,0));
+    animation: retrace 4.2s linear infinite;
+    opacity:0.95;
+}
+@keyframes retrace {
+    0% { top:-25%; }
+    100% { top:120%; }
+}
+
+/* subtle jitter (sync instability) */
+@keyframes jitter {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-0.4px); }
+    100% { transform: translateY(0); }
+}
+#content { animation: jitter 0.08s infinite; }
+
+/* optional burn shadow at top-left for realism */
+#burn {
+    pointer-events:none;
+    position:absolute;
+    left:2%; top:6%;
+    width:40%; height:40%;
+    z-index:30;
+    background: radial-gradient(ellipse at 20% 10%, rgba(255,210,140,0.06), rgba(0,0,0,0) 40%);
+    mix-blend-mode: screen;
+}
+
+/* make bright text bloom slightly */
+.glow {
+    text-shadow: 0 0 10px rgba(215,154,50,0.9), 0 0 22px rgba(215,154,50,0.24);
+}
+
+/* end effects */
+</style>
+</head>
+<body>
+
+<!-- CRT shell -->
+<div id="crt-shell">
+
+    <!-- low-res stage: everything is drawn inside this container -->
+    <div id="crt-content">
+
+        <!-- effect layers (inside crt-content so they overlap precisely) -->
+        <div id="scanlines"></div>
+        <div id="grille"></div>
+        <div id="smear"></div>
+        <div id="retrace"></div>
+        <div id="burn"></div>
+
+        <!-- low-res scaled area -->
+        <div id="lowres-stage">
+            <div id="content">
+                <div class="header">
+                    <h1 class="glow">bhu1's dashboard</h1>
+                </div>
+
+                <div id="wrap">
+                    <div id="slides">
+
+                        <!-- PAGE 0: CPU -->
+                        <div class="page" id="p0">
+                            <h3>CPU</h3>
+                            <div class="small">Load</div>
+                            <div class="meter"><div id="cpuFill" class="fill"></div></div>
+                            <div id="cpuText" class="small"></div>
+
+                            <div style="margin-top:14px" class="small">Temp</div>
+                            <div id="cpuTemp" class="small"></div>
+
+                            <div style="margin-top:8px" class="small">Cores</div>
+                            <div id="cpuCores" class="small"></div>
+                        </div>
+
+                        <!-- PAGE 1: GPU -->
+                        <div class="page" id="p1">
+                            <h3>GPU</h3>
+                            <div class="small">Load</div>
+                            <div class="meter"><div id="gpuFill" class="fill"></div></div>
+                            <div id="gpuText" class="small"></div>
+
+                            <div style="margin-top:14px" class="small">Temp</div>
+                            <div id="gpuTemp" class="small"></div>
+                        </div>
+
+                        <!-- PAGE 2: RAM & Disk -->
+                        <div class="page" id="p2">
+                            <h3>Memory</h3>
+                            <div class="small">RAM</div>
+                            <div class="meter"><div id="ramFill" class="fill"></div></div>
+                            <div id="ramText" class="small"></div>
+
+                            <div style="margin-top:14px" class="small">Disk</div>
+                            <div class="meter"><div id="diskFill" class="fill"></div></div>
+                            <div id="diskText" class="small"></div>
+                        </div>
+
+                        <!-- PAGE 3: Processes -->
+                        <div class="page" id="p3">
+                            <h3>Processes</h3>
+                            <div class="small">Jellyfin: <span id="jfCPU">0</span>% CPU / <span id="jfMem">0</span>%</div>
+                            <div style="height:8px"></div>
+                            <div class="small">Firefox: <span id="ffCPU">0</span>% CPU / <span id="ffMem">0</span>%</div>
+                            <div style="height:8px"></div>
+                            <div class="small">n8n: <span id="n8nCPU">0</span>% CPU / <span id="n8nMem">0</span>%</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- controls -->
+                <div class="controls">
+                    <button class="nav" onclick="prev()">◀</button>
+                    <button class="nav" onclick="next()">▶</button>
+                    <div class="dots" id="dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+            </div> <!-- end content -->
+        </div> <!-- end lowres -->
+
+    </div> <!-- end crt-content -->
+</div> <!-- end shell -->
+
+<script>
+/* ===================== Simple slide logic (legacy-safe JS) ===================== */
+var index = 0;
+var pages = 4;
+var slides = document.getElementById('slides');
+var dots = document.getElementById('dots').getElementsByClassName('dot');
+
+function updateDots(i) {
+    for (var k=0;k<dots.length;k++) dots[k].className = 'dot';
+    dots[i].className = 'dot active';
+}
+function show(i) {
+    index = i;
+    slides.style.left = (-100 * index) + '%';
+    updateDots(index);
+}
+function next() { show((index + 1) % pages); }
+function prev() { show((index - 1 + pages) % pages); }
+
+/* touch swipe support (very simple, Vita-friendly) */
+var startX = 0;
+document.addEventListener('touchstart', function(e){
+    if (!e.touches || !e.touches[0]) return;
+    startX = e.touches[0].clientX;
+}, false);
+document.addEventListener('touchend', function(e){
+    var endX = e.changedTouches[0].clientX;
+    var dx = endX - startX;
+    if (dx > 40) prev();
+    if (dx < -40) next();
+}, false);
+
+/* ===================== SSE data binding ===================== */
+/* expects SSE events with JSON payload matching server keys:
+   cpu, cpu_cores (array), cpu_temps (array), ram, disk,
+   gpu, gpu_temp, jellyfin {cpu, mem}, firefox {cpu, mem}, n8n {cpu, mem}
+*/
+var es = new EventSource('/events');
+
+es.onmessage = function(e) {
+    var d = {};
+    try {
+        d = JSON.parse(e.data);
+    } catch(err) {
+        return;
+    }
+
+    /* defensive fallback values */
+    if (!d) return;
+    if (isNaN(d.cpu)) d.cpu = 0;
+    if (!d.cpu_cores) d.cpu_cores = [];
+    if (!d.cpu_temps) d.cpu_temps = [];
+    if (isNaN(d.ram)) d.ram = 0;
+    if (isNaN(d.disk)) d.disk = 0;
+    if (isNaN(d.gpu)) d.gpu = 0;
+    if (isNaN(d.gpu_temp)) d.gpu_temp = 0;
+
+    /* CPU */
+    try {
+        document.getElementById('cpuFill').style.width = (d.cpu) + '%';
+        document.getElementById('cpuText').innerHTML = (d.cpu) + '%';
+        document.getElementById('cpuTemp').innerHTML = ( (d.cpu_temps && d.cpu_temps.length>0) ? (d.cpu_temps[0] + '°C') : (d.cpu_temps || 'N/A') );
+        var coreStr = '';
+        for (var i=0;i<d.cpu_cores.length;i++) {
+            coreStr += 'C' + i + ':' + d.cpu_cores[i] + '% ';
+        }
+        document.getElementById('cpuCores').innerHTML = coreStr;
+    } catch(e){}
+
+    /* GPU */
+    try {
+        document.getElementById('gpuFill').style.width = (d.gpu) + '%';
+        document.getElementById('gpuText').innerHTML = (d.gpu) + '%';
+        document.getElementById('gpuTemp').innerHTML = (d.gpu_temp || 'N/A') + '°C';
+    } catch(e){}
+
+    /* RAM + Disk */
+    try {
+        document.getElementById('ramFill').style.width = (d.ram) + '%';
+        document.getElementById('ramText').innerHTML = (d.ram) + '%';
+        document.getElementById('diskFill').style.width = (d.disk) + '%';
+        document.getElementById('diskText').innerHTML = (d.disk) + '%';
+    } catch(e){}
+
+    /* Processes (jellyfin/firefox/n8n) */
+    try {
+        if (d.jellyfin) {
+            document.getElementById('jfCPU').innerHTML = (d.jellyfin.cpu || 0).toFixed(1);
+            document.getElementById('jfMem').innerHTML = (d.jellyfin.mem || 0).toFixed(1);
+        }
+        if (d.firefox) {
+            document.getElementById('ffCPU').innerHTML = (d.firefox.cpu || 0).toFixed(1);
+            document.getElementById('ffMem').innerHTML = (d.firefox.mem || 0).toFixed(1);
+        }
+        if (d.n8n) {
+            document.getElementById('n8nCPU').innerHTML = (d.n8n.cpu || 0).toFixed(1);
+            document.getElementById('n8nMem').innerHTML = (d.n8n.mem || 0).toFixed(1);
+        }
+    } catch(e){}
+};
+
+/* fallback: keyboard left/right for desktop */
+document.addEventListener('keydown', function(e){
+    var code = e.keyCode || e.which;
+    if (code === 37) prev();
+    if (code === 39) next();
+}, false);
+
+/* initial render */
+show(0);
+</script>
+
+</body>
+</html>

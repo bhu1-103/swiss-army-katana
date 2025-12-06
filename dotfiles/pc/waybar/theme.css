@@ -1,33 +1,45 @@
-/* Cyberpunk Theme */
+/* --- Core Palette --- */
+@define-color neon-pink #ff007c;      /* Was Red */
+@define-color neon-purple #bd00ff;    /* Was Dark Red */
+@define-color neon-bg #0a0b1e;        /* Was Black */
+@define-color neon-cyan #00f0ff;      /* Was White (Borders/Accents) */
+@define-color neon-white #ffffff;     /* For Text */
+@define-color neon-gray #1f2233;      /* Was Gray */
 
-/* Base border color*/
-@define-color border-main #03D8F3;
-@define-color border-alt #03D8F3;
+/* --- Base Borders --- */
+@define-color border-main @neon-cyan;
+@define-color border-alt @neon-pink;
 
-/* Background Colors */
-@define-color bg-main #0A0A1A;
-@define-color bg-alt #FF1492;
-@define-color bg-hover #8A2CE2;
-@define-color bg-hover-alt #6B22B5;
-@define-color bg-tooltip @bg-main;
-@define-color bg-second #1A1A2A;
-@define-color bg-third #FF1492;
-@define-color sway-bg @bg-main;
+/* --- Backgrounds --- */
+@define-color bg-main @neon-bg;
+@define-color bg-alt @neon-pink;
+@define-color bg-hover @neon-cyan;
+@define-color bg-hover-alt @neon-gray;
+@define-color bg-tooltip @neon-bg;
+@define-color bg-second @neon-pink;
+@define-color bg-third @neon-cyan;
+@define-color sway-bg @neon-bg;
 
-/*text color for entries, views and content in general */
-@define-color fg-main #03D8F3;
-@define-color fg-unactive #02A9BB;
-@define-color content-act #03D8F3;
+/* --- Text --- */
+@define-color fg-main @neon-white;
+@define-color fg-unactive #666666;
+@define-color content-act @neon-bg;
 
+/* --- Player Module Colors --- */
+@define-color ply-main @neon-bg;
+@define-color ply-hover @neon-pink;
+@define-color ply-act @neon-cyan;
+@define-color msc-act @neon-bg;
 
-/* Player colors */
-@define-color ply-main #1A1A2A;
-@define-color ply-hover #8A2CE2;
-@define-color ply-act #2A2A3A;
-@define-color msc-act #1A1A2A;
+/* --- Wlogout --- */
+@define-color wlogout-hover rgba(255, 0, 124, 0.8); /* Pink */
+@define-color wlogout-bg rgba(10, 11, 30, 0.85);    /* Indigo */
+@define-color wlogout-button rgba(0, 240, 255, 0.1); /* Cyan */
 
-/* Wlogout */
-
-@define-color wlogout-hover rgba(26, 26, 42, 0.5);
-@define-color wlogout-bg rgba(10, 10, 26, 0.5);
-@define-color wlogout-button rgba(10, 10, 26, 0.7);
+/* --- COMPATIBILITY BRIDGE --- 
+ * Ensures compatibility with the "Texture & Chaos" layout 
+ */
+@define-color accent-primary @neon-pink;     /* Main Pop Color */
+@define-color accent-secondary @neon-cyan;   /* Secondary Contrast */
+@define-color bg-secondary @neon-purple;     /* Used for stripes/charging */
+@define-color fg-dim @neon-cyan;             /* Secondary text color */

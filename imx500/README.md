@@ -16,4 +16,6 @@
 ## Jan-18-2026
 
 - [x] convert yolo models to imx500
-- [x] setup environment and [hacks]() correctly
+- [x] setup environment and [hacks](https://github.com/bhu1-103/swiss-army-katana/blob/main/imx500/hacks.md#jan-18-2026) correctly
+- [x] basic yolov11n, pose detection, segmentation, classification models working, barely
+- [ ] setup pyproject.toml file to easily replicate the environment

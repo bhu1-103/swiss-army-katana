@@ -17,7 +17,7 @@
 
 - [x] convert yolo models to imx500
 - [x] setup environment and [hacks](./hacks.md#jan-18-2026) correctly
-- [x] basic yolov11n, pose detection, segmentation, classification models inference working, barely
+- [x] basic yolo11-n, pose detection, segmentation, classification models inference working, barely
 - [ ] setup pyproject.toml file to easily replicate the environment
 
 ## Jan-19-2026
@@ -25,3 +25,8 @@
 - [x] pose detection ([demo code here](./pose-detection/json-viewer.py)) working -> 20 fps -> 7-8 people -> runs without problems
 - [x] able to record and replay pose detection videos using json dump
 - [ ] implement it in transparent oled display
+
+## Jan-20-2026
+
+- [x] classic yolo11-n model running
+- [x] found some more [hacks](./hacks.md#Jan-20-2026)

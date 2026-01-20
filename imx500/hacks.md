@@ -25,3 +25,10 @@ nvim /home/bhu5/models/4-yolov8/.venv/lib/python3.13/site-packages/modlib/device
 
 `       #"opencv-python>=4.10.0.84,<=4.12.0.88",`
 
+## Jan-18-2026
+
+### inference speeds
+
+- the raspberry pi ai camera usually gets a latency of 66 ms per frame, that is ~16 fps
+- trying anything beyond 16 fps will not work as it was hardcoded (kinda) to work at a max of 16 fps
+- if using a low end sbc like pi zero 2 w, try to keep it low resolution or just draw bounding boxes without displaying the camera view

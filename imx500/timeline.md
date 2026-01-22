@@ -22,7 +22,7 @@
 
 ## Jan-19-2026
 
-- [x] pose detection ([demo code here](./pose-detection/json-viewer.py)) working -> 20 fps -> 7-8 people -> runs without problems
+- [x] pose detection ([demo code here](./pose-detection/json-viewer.py)) working -> 16 fps -> 7-8 people -> runs without problems
 - [x] able to record and replay pose detection videos using json dump
 - [ ] implement it in transparent oled display
 
@@ -31,3 +31,10 @@
 - [x] classic yolo11-n model running
 - [x] found some more [hacks](./hacks.md#Jan-20-2026)
 - [x] train yolo models with custom dataset [here](./custom-dataset.md)
+
+## Jan-20-2026
+
+- [ ] studying threat detection algorithms for various cases, including -
+- simple ones like a model that warns when dogs were detected
+- complex ones where human body motion can be traced using the pose detection model and a prediction can be made whether a danger is coming near.
+- [x] studying boundaries and limitations to keep false positives away

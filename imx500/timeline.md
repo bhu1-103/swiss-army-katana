@@ -22,7 +22,7 @@
 
 ## Jan-19-2026
 
-- [x] pose detection ([demo code here](./pose-detection/json-viewer.py)) working -> 16 fps -> 7-8 people -> runs without problems
+- [x] pose detection ([demo code here](./models/pose-detection/json-viewer.py)) working -> 16 fps -> 7-8 people -> runs without problems
 - [x] able to record and replay pose detection videos using json dump
 - [ ] implement it in transparent oled display
 

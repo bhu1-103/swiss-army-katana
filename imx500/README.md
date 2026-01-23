@@ -7,7 +7,7 @@ Experiments with running custom YOLO and pose detection models directly on the S
 ## Notes & Logs
 
 - [Timeline of experiments](timeline.md)
-- [Click here if you want to make yolo recognize more objects](custom-dataset.md)
+- [Dataset prepration for fine tuning](custom-dataset.md)
 - [Hacks and undocumented behavior](hacks.md)
 
 ---

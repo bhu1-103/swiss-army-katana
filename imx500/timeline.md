@@ -38,3 +38,10 @@
 - simple ones like a model that warns when dogs were detected
 - complex ones where human body motion can be traced using the pose detection model and a prediction can be made whether a danger is coming near.
 - [x] studying boundaries and limitations to keep false positives away
+
+## Jan-22-2026
+
+- [x] Research what the novelty should be -> First Person Fight Assist System
+- [x] Source data for first person fighting from somewhere -> Video games like dying light should do
+- [x] Source data for roads segmentation model that can help us make a model that will segmnent roads using yolo11-n-seg
+- [ ] Develope the models

@@ -2,6 +2,12 @@
 
 Experiments with running custom YOLO and pose detection models directly on the Sony IMX500 intelligent vision sensor.
 
+## To-do
+
+- [x] get yolo working
+- [ ] transparent display
+- [ ] make it portable, replace powerbank with lipo battery
+
 ---
 
 ## Notes & Logs

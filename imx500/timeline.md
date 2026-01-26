@@ -45,3 +45,7 @@
 - [x] Source data for first person fighting from somewhere -> Video games like dying light should do
 - [x] Source data for roads segmentation model that can help us make a model that will segmnent roads using yolo11-n-seg
 - [ ] Develope the models
+
+## Jan-26-2026
+
+- [x] Tested yolo11-n-seg. Unfortunately, it does not work well, latency is 1000+ ms. sometimes 3000 ms

@@ -7,10 +7,16 @@ if [[ -z "${1:-}" ]]; then
 fi
 
 INPUT="$1"
-DIR="${INPUT:h}"
-BASE="${INPUT:t:r}"
-OUTPUT="$DIR/$BASE.mp3"
+BASENAME="${INPUT:t:r}"
+OUTDIR="/run/media/bhu1/disk/MUSIC"
+OUTPUT="$OUTDIR/$BASENAME.mp3"
 
-lame -V2 --vbr-new --add-id3v2 "$INPUT" "$OUTPUT"
+ffmpeg -y -i "$INPUT" \
+  -map 0:a \
+  -map "0:v?" \
+  -c:a libmp3lame -q:a 2 \
+  -c:v copy \
+  -id3v2_version 3 \
+  "$OUTPUT"
 
-echo "Converted: $OUTPUT"
+echo "Created: $OUTPUT"

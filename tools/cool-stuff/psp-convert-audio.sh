@@ -1,23 +1,14 @@
 #!/usr/bin/env zsh
-
 set -euo pipefail
 
-if [[ -z "${1:-}" ]]; then
-  echo "Usage: $0 <audio-file>"
+if [[ $# -ne 2 ]]; then
+  echo "Usage: $0 <input-audio> <output-mp3>"
   exit 1
 fi
 
 INPUT="$1"
-BASENAME="${INPUT:t}"
-NAME="${BASENAME:r}"
+OUTPUT="$2"
 
-OUTDIR="./PSP_MUSIC"
-mkdir -p "$OUTDIR"
+lame -V2 --vbr-new --add-id3v2 "$INPUT" "$OUTPUT"
 
-OUTPUT="$OUTDIR/$NAME.mp3"
-
-ffmpeg -y -i "$INPUT" -vn -ac 2 -ar 44100 -f wav /tmp/psp_audio_temp.wav
-lame -V2 /tmp/psp_audio_temp.wav "$OUTPUT"
-rm /tmp/psp_audio_temp.wav
-
-echo "Created PSP audio: $OUTPUT"
+echo "Created: $OUTPUT"

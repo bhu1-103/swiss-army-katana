@@ -11,10 +11,9 @@ INPUT="$1"
 BASENAME="${INPUT:t}"
 NAME="${BASENAME:r}"
 
-PSP_DIR="./MP_ROOT/100MNV01"
+PSP_DIR="/run/media/bhu1/disk/VIDEO"
 mkdir -p "$PSP_DIR"
 
-# Find next PSP-style filename
 count=$(ls "$PSP_DIR"/M4V*.MP4(N) | wc -l)
 printf -v PSP_NAME "M4V%05d.MP4" $((count + 1))
 

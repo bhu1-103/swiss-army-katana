@@ -47,3 +47,11 @@
 - ```mkdir -p assets; echo "Cat \nDog" > assets/imagenet_labels.txt```
 
 - follow the [hacks](./hacks.md#jan-29-2026)
+
+---
+
+### inference
+
+| Cat | Dog |
+| :---: | :---: |
+| ![cat inference](../assets/imx500-pics/custom-imagenet-1/cat.png) | ![dog inference](../assets/imx500-pics/custom-imagenet-1/dog.png) |

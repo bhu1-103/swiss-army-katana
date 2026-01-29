@@ -52,6 +52,8 @@
 
 ### inference
 
+- confidence score is in the top left of the camera window
+
 | Cat | Dog |
 | :---: | :---: |
 | ![cat inference](../assets/imx500-pics/custom-imagenet-1/cat.png) | ![dog inference](../assets/imx500-pics/custom-imagenet-1/dog.png) |

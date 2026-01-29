@@ -48,4 +48,9 @@
 
 ## Jan-26-2026
 
-- [x] Tested yolo11-n-seg. Unfortunately, it does not work well, latency is 1000+ ms. sometimes 3000 ms
+- [x] Tested yolo11-n-seg. Unfortunately, it does not work well, latency is 1000+ ms. sometimes 3000 ms. Self driving car branch is a bust (with pi zero 2 w)
+
+## Jan-29-2026
+
+- [x] Trained custom imagenet model to identify dogs and cats only (tiny 2.3 mb model)
+- [x] No more running pretrained models like from [Jan-17-2026](./timeline.md#jan-17-2026)

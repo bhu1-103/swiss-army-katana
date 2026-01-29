@@ -10,7 +10,7 @@
 
 ### training the model
 
-- run [this](models/custom-imagenet/train.py) script
+- run [this](./models/custom-imagenet/train.py) script
 
 - this will take a while and run 3 epochs with 8 batches (increase it if your GPU can handle it) and the model should be ready in an `.onnx` file
 
@@ -46,4 +46,4 @@
 
 - ```mkdir -p assets; echo "Cat \nDog" > assets/imagenet_labels.txt```
 
-- follow the [hacks](hacks.md)
+- follow the [hacks](./hacks.md#jan-29-2026)

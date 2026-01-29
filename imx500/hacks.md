@@ -48,5 +48,6 @@ to
 ```
 - there is one more problem, the code still expects 1000 labels
 - comment out `line 30`
+
 ```        assert len(LABELS) in [1000, 1001], "Labels file should contain 1000 or 1001 labels."```
 - with this, the custom model should run properly

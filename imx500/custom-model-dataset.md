@@ -35,3 +35,15 @@
 - run ```imx500-package -i packerOut.zip -o network.rpk```
 
 - this is the final step and then the model will be usable freely
+
+### run the model
+
+- ```git clone git clone https://github.com/raspberrypi/picamera2.git picamera2```
+
+- ```cd /home/bhu5/models/6-custom-imagenet``` (the folder that contains the `.rpk` file)
+
+- ```python ~/picamera2/examples/imx500/imx500_classification_demo.py --model network.rpk/network.rpk```
+
+- ```mkdir -p assets; echo "Cat \nDog" > assets/imagenet_labels.txt```
+
+- follow the [hacks](hacks.md)

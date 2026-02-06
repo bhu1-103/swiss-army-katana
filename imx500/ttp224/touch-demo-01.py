@@ -28,7 +28,7 @@ def check_for_swipe():
         history.clear()
 
     if cleaned == sorted(cleaned, reverse=True):
-        print(">>LEFT>>")
+        print("<<LEFT<<")
         history.clear()
 
 def make_handlers(index):

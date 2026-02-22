@@ -4,11 +4,10 @@ import time
 WORK_MIN = 25
 BREAK_MIN = 5
 
-# convert to seconds
 WORK_SEC = WORK_MIN * 60
 BREAK_SEC = BREAK_MIN * 60
 
-buzzer = PWM(Pin(1))
+buzzer = PWM(Pin(0))
 buzzer.duty_u16(0)
 
 def beep(freq=2000, duration=0.2):

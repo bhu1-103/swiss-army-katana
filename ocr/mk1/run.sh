@@ -1,9 +1,9 @@
 #!/usr/bin/zsh
 #
-export TESSDATA_PREFIX=~/tts
-IMG=$HOME/.local/cache/tts-screenshot-2.png
+export TESSDATA_PREFIX=~/tts #download best tesseract model here
+IMG=/tmp/tts-screenshot-2.png
 
-dir=$HOME/.local/cache/
+dir=/tmp
 cd "$dir"
 rm tts-screenshot*
 #scrot --select --freeze --line mode=edge tts-screenshot.png

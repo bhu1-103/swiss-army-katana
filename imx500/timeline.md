@@ -54,3 +54,8 @@
 
 - [x] Trained custom imagenet model to identify dogs and cats only (tiny 2.3 mb model)
 - [x] No more running pretrained models like from [Jan-17-2026](./timeline.md#jan-17-2026)
+
+## Mar-08-2026
+
+- [x] Research tiny language models to convert a scene into a short sentence
+- [ ] Get int4 optimized distilgpt-2 working on raspberry pi zero 2 w

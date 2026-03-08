@@ -59,3 +59,4 @@
 
 - [x] Research tiny language models to convert a scene into a short sentence
 - [ ] Get int4 optimized distilgpt-2 working on raspberry pi zero 2 w
+- [x] Added requirements file to get the working environment

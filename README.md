@@ -37,6 +37,4 @@ This repository also contains a variety of smaller scripts and tools to automate
 - **[auto-rotate](https://github.com/bhu1-103/swiss-army-katana/tree/main/tools/auto-rotate):** A script for enabling automatic screen rotation on laptops with accelerometers.
 
 ## [Dotfiles](https://github.com/bhu1-103/swiss-army-katana/tree/main/dotfiles)
-My personal configuration files for various tools and window managers like Hyprland, bspwm, and i3.
-
-## hosted my n8n dashboard using docker and cloudflared
+My personal configuration files for various tools and window managers like Hyprland, bspwm, i3, etc

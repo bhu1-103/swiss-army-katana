@@ -1,5 +1,12 @@
 #!/usr/bin/zsh
 
+TMP=$(mktemp)
+
+xclip -selection clipboard -o > "$TMP" 2>/dev/null
+
+sleep 0.2
+xdotool key ctrl+c
+
 TEXT=$(xclip -o -selection clipboard)
 
 [ -z "$TEXT" ] && exit 0
@@ -18,3 +25,5 @@ curl -s -X POST "http://127.0.0.1:50021/synthesis?speaker=66" \
   > voice.wav
 
 mpv voice.wav
+
+xclip -selection clipboard < "$TMP"

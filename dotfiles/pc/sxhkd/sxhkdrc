@@ -6,8 +6,8 @@
 
 #lock
 
-super + shift + l
-	~/dev/bin/lock.sh
+super + z
+    /home/bhu1/dev/bin/ocr.sh
 
 
 # terminal emulator
@@ -17,6 +17,10 @@ super + Return
 # program launcher
 super + d
     /home/bhu1/.config/rofi/launchers/type-1/launcher.sh
+
+#tts
+super + a
+    /home/bhu1/dev/bin/tts.sh
 
 # wallpapur.sh
 #super + shift + w
@@ -157,11 +161,11 @@ Pause
 
 #others
 Print
-	/home/bhu2/dev/bin/screenshot.sh
+	/home/bhu1/dev/bin/screenshot.sh
 super + shift + Print
-	/home/bhu2/dev/bin/screenshot-current.sh
+	/home/bhu1/dev/bin/screenshot-current.sh
 super + Print
-	/home/bhu2/dev/bin/screenshot-select.sh
+	/home/bhu1/dev/bin/screenshot-select.sh
 XF86AudioPlay
 	playerctl play-pause
 XF86AudioRewind

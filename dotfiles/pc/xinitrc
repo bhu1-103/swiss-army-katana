@@ -1,0 +1,6 @@
+input-leap-server &
+sxhkd &
+exec bspwm
+xset s off
+xset -dpms
+xset s noblank

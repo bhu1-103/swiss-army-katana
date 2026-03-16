@@ -26,6 +26,7 @@ kitty &
 sleep 4;polybar &
 killall polybar
 polybar -c ~/.config/polybar/bar1.ini &
+redshift -l 12.9716:77.5946 &
 dunst &
 fcitx5 &
 listenbrainz-mpd &

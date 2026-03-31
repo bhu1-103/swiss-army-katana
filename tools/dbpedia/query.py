@@ -1,3 +1,11 @@
+###
+### NOTE
+### THE PROMPT ENGINEERING IS NOT PERFECT AND I HAVE TO WORK ON IT FOR THE 100TH TIME AGAIN
+### THE CODE ITSELF WORKS, BUT CHANGES HAVE TO BE MADE WITH THE PROMPT TO ACHIEVE GOOD RESULTS, IN create_plan()
+###
+###
+###
+
 import ollama
 import httpx
 import json
@@ -195,5 +203,5 @@ class MultiHopAgent:
 
 if __name__ == "__main__":
     import sys
-    q = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "What is the capital of France?"
+    q = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "What is the population of the capital of France?"
     print(f"FINAL ANSWER: {MultiHopAgent().answer_question(q)}")

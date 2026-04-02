@@ -1,15 +1,19 @@
-#!/usr/bin/zsh
+#!/usr/bin/env bash
 
-TMP=$(mktemp)
+DIR="/tmp/mangaocr"
+IMG="$DIR/shot-$(date +%s%N).png"
 
-xclip -selection clipboard -o > "$TMP" 2>/dev/null
+mkdir -p "$DIR"
 
-sleep 0.2
-xdotool key ctrl+c
+maim -s "$IMG"
+
+sleep 0.35
 
 TEXT=$(xclip -o -selection clipboard)
 
 [ -z "$TEXT" ] && exit 0
+
+dunstify "TTS Processing..." "$TEXT" -i "$IMG" -r 1919
 
 curl -s -X POST "http://127.0.0.1:50021/audio_query" \
   --get \
@@ -17,13 +21,11 @@ curl -s -X POST "http://127.0.0.1:50021/audio_query" \
   --data-urlencode "text=$TEXT" \
   > query.json
 
-jq '.speedScale=0.95 | .intonationScale=1.3 | .pitchScale=0.0' query.json > query2.json
+jq '.speedScale=0.95 | .intonationScale=1.3 | .pitchScale=-0.08' query.json > query2.json
 
-curl -s -X POST "http://127.0.0.1:50021/synthesis?speaker=66" \
+curl -s -X POST "http://127.0.0.1:50021/synthesis?speaker=4" \
   -H "Content-Type: application/json" \
   -d @query2.json \
   > voice.wav
 
 mpv voice.wav
-
-xclip -selection clipboard < "$TMP"

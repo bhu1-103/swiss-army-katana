@@ -1,6 +1,8 @@
 # swiss-army-katana
 A collection of personal projects and tools I've developed in my free time.
 
+Since April 2026, I've been adding new project entries to [my website](https://8hu.one/projects.html)
+
 ## Demos
 
 | 3D Ray-Casted World | Synthwave Animation | Circle Algorithm |

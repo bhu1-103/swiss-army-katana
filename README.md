@@ -14,3 +14,8 @@ Since April 2026, I've been adding new project entries to [my website](https://8
 | Theme 1 | Theme 2 | Theme 3 |
 | :---: | :---: | :---: |
 | ![theme1](/assets/karaoke-engine-1.png) | ![theme2](/assets/karaoke-engine-2.png) | ![theme3](/assets/karaoke-engine-3.png) |
+
+## hyprland rice
+
+![old hyprland rice](/assets/hyprland-rice-old.jpeg)
+![current hyprland rice](./assets/hyprland-rice.jpeg)
